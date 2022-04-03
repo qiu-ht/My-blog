@@ -1,1 +1,4 @@
-# vuex,vue-router,qs序列化，翻页功能，markdown解析（用movonEditor），ajax，node，数据库（mongodb）
+### 技术栈：vue+vuex+vue-router，node+express，数据库（mongodb），less，axios，element-ui
+#### npm i
+#### npm run serve 本地运行
+#### npm run build 打包

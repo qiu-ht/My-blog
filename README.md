@@ -1,2 +1,1 @@
-# My-blog
-上线后的博客
+# vuex,vue-router,qs序列化，翻页功能，markdown解析（用movonEditor），ajax，node，数据库（mongodb）

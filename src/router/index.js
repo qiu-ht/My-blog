@@ -14,6 +14,7 @@ const ArticalInfo = () => import( '../components/content/MainInfo/ArticalInfo/Ar
 const UserInfo = () => import( '../components/UserInfo/UserInfo.vue')
 const frontendEbooks = () => import('../components/content/MainInfo/Ebooks/Frontbooks/Frontbooks.vue')
 const OtherEbooks = () => import('../components/content/MainInfo/Ebooks/Otherbooks/Otherbooks.vue')
+const Tools = () => import('../components/content/MainInfo/Tools/Tools.vue')
 Vue.use(Router)
 
 export default new Router({
@@ -74,7 +75,8 @@ export default new Router({
                         },
                         {
                             name:'tools',
-                            path:"/resource/tools"
+                            path:"/resource/tools",
+                            component:Tools
                         },
                         {
                             name:'olcourse',

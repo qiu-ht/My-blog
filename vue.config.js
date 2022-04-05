@@ -6,5 +6,5 @@ module.exports = {
         errors: true
       }
     },
-    productionSourceMap:false 
+    productionSourceMap:false
   }

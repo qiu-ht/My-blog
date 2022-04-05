@@ -1,12 +1,12 @@
 <template>
   <div class="tools">
     <h1 class="toolsTitle">工具</h1>
-    <div class="chunk">
-      <el-divider>Github加速</el-divider>
+    <div class="chunk" v-for="(eachChunk,index1) in chunk" :key="index1">
+      <el-divider content-position="left">{{eachChunk.chunkname}}</el-divider>
       <div class="links">
         <div
           class="eachLink"
-          v-for="(item, index) in github"
+          v-for="(item, index) in eachChunk.linkArr"
           :key="index"
           @click="toLink(item.url)"
         >
@@ -29,14 +29,60 @@
 export default {
   data() {
     return {
-      github: [
+      chunk:[
         {
-          src: "http://taogezhenshuai.fun:3002/blogImage?url=public/blogIMG/1649004597548-image.png&filename=image.png",
-          title: "steam++",
-          content: "亲测非常好用。",
-          url: "http://steampp.net/",
+          chunkname:'Github加速',
+          linkArr:[
+            {
+              src: "http://taogezhenshuai.fun:3002/blogImage?url=public/blogIMG/1649004597548-image.png&filename=image.png",
+              title: "steam++",
+              content: "亲测非常好用。",
+              url: "http://steampp.net/",
+            },
+            {
+              src:"http://taogezhenshuai.fun:3002/blogImage?url=public/blogIMG/1649139058858-image.png&filename=image.png",
+              title:"UU加速器",
+              content:"开启学术资源加速~",
+              url:'https://uu.163.com/'
+            }
+          ]
+        },
+        {
+          chunkname:'菜鸟工具',
+          linkArr:[
+            {
+              src:"https://img1.baidu.com/it/u=2123894146,2909659137&fm=253&fmt=auto&app=138&f=JPEG?w=301&h=301",
+              title:"工具首页",
+              content:"上百种好用的工具。",
+              url:"https://c.runoob.com/"
+            }
+          ]
+        },
+        {
+          chunkname:'其他工具',
+          linkArr:[
+            {
+              src:"http://taogezhenshuai.fun:3002/blogImage?url=public/blogIMG/1649141043217-image.png&filename=image.png",
+              title:'书法字体转换',
+              content:'各种各样的书法字体。',
+              url:'http://www.logoquan.com/shufa/'
+            },
+            {
+              src:"http://taogezhenshuai.fun:3002/blogImage?url=public/blogIMG/1649141227778-image.png&filename=image.png",
+              title:'艺术字体',
+              content:'各种各样好看的艺术字体。',
+              url:'http://www.akuziti.com/'
+            },
+            {
+              src:"http://taogezhenshuai.fun:3002/blogImage?url=public/blogIMG/1649141227778-image.png&filename=image.png",
+              title:'ico图标制作',
+              content:'使用图片生成网站ico图标。',
+              url:'https://www.bitbug.net/'
+            },
+          ]
         }
       ],
+
     };
   },
   methods: {
@@ -62,8 +108,9 @@ export default {
 
   .chunk {
     width: 100%;
+    
     .el-divider {
-      width: 80%;
+      width: 90%;
       margin: 0 auto;
       
     }
@@ -76,7 +123,7 @@ export default {
       display: flex;
       flex-wrap: wrap;
       width: 94%;
-      margin: 20px auto 20px;
+      margin: 5px auto 40px;
       .eachLink {
         width: calc(~"1/3 * 100%");
         display: flex;

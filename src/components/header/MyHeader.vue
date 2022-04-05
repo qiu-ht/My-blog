@@ -27,6 +27,12 @@
             @click="openEbooks"
             >电子书</span
           >
+          <span
+            class="resource"
+            :to="{ name: 'ebooks' }"
+            @click="openTools"
+            >工具</span
+          >
         </div>
         
         <el-dropdown trigger="click" placement="bottom" class="portrait" @command="handleCommand">
@@ -90,6 +96,10 @@ export default {
     },
     openEbooks() {
       this.$router.push({name:'ebooks'})
+      document.documentElement.scrollTop = 0
+    },
+    openTools(){
+      this.$router.push({name:'tools'})
       document.documentElement.scrollTop = 0
     },
     handleCommand(command) {

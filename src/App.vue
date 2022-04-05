@@ -145,7 +145,10 @@ body {
   font-size: 15px !important;
   font-family: 'Courier New', Courier, monospace;
 }
-
+.markdown-body img{
+  box-shadow: 0 0 5px #fff;
+  cursor: pointer;
+}
 
 .el-divider{
   background-color: #a8dff5 !important;

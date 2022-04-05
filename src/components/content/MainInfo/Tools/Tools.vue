@@ -48,13 +48,19 @@ export default {
           ]
         },
         {
-          chunkname:'菜鸟工具',
+          chunkname:'前端工具',
           linkArr:[
             {
               src:"https://img1.baidu.com/it/u=2123894146,2909659137&fm=253&fmt=auto&app=138&f=JPEG?w=301&h=301",
-              title:"工具首页",
+              title:"菜鸟工具集合",
               content:"上百种好用的工具。",
               url:"https://c.runoob.com/"
+            },
+            {
+              src:"http://taogezhenshuai.fun:3002/blogImage?url=public/blogIMG/1649168091154-image.png&filename=image.png",
+              title:'postman',
+              content:'调试接口常用工具。',
+              url:'https://www.postman.com/downloads/'
             }
           ]
         },
@@ -79,6 +85,13 @@ export default {
               content:'使用图片生成网站ico图标。',
               url:'https://www.bitbug.net/'
             },
+            {
+              src:"http://taogezhenshuai.fun:3002/blogImage?url=public/blogIMG/1649168810161-image.png&filename=image.png",
+              title:'docsmall',
+              content:'在线图片压缩网站。',
+              url:'https://www.bitbug.net/'
+            },
+            
           ]
         }
       ],

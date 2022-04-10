@@ -4,25 +4,14 @@
       <span class="qiu" ref="qiu">QIU</span>
 
         <div
-          :class="
-            this.$store.state.user.administrator
-              ? 'mobileList'
-              : 'mobileList userMobileList'
-          "
-          v-show="funcList"
+          :class="this.$store.state.user.administrator?'mobileList':'mobileList userMobileList'"
           @click="hideList"
         >
-          <span
-            class="blog"
-            v-if="this.$store.state.user.administrator"
-            @click="toBlog"
-          >
-            写博客
-          </span>
+          
           <a class="home" href="/">首页</a>
           <span class="note" v-if="!this.$store.state.userScreen.computer" @click="toNote"> 笔记 </span>
           <span
-            class="resource"
+            class="ebook"
             :to="{ name: 'ebooks' }"
             @click="openEbooks"
             >电子书</span
@@ -33,6 +22,13 @@
             @click="openTools"
             >工具</span
           >
+          <span
+            class="blog"
+            v-if="this.$store.state.user.administrator"
+            @click="toBlog"
+          >
+            写博客
+          </span>
         </div>
         
         <el-dropdown trigger="click" placement="bottom" class="portrait" @command="handleCommand">
@@ -87,11 +83,21 @@ export default {
       this.showOrHide = !this.showOrHide;
     },
     showlist() {
-      this.funcList = !this.funcList;
+      let mobileList = document.querySelector('.mobileList')
+      if(this.funcList){
+        this.funcList = false
+        setTimeout(()=>{
+          mobileList.style.display = 'none'
+        },300)
+      }else{
+        this.funcList = true
+        mobileList.style.display = 'block'
+      }
+      
     },
     hideList() {
       if (window.screen.width <= 912) {
-        this.funcList = false;
+        document.querySelector('.mobileList').style.display = 'none'
       }
     },
     openEbooks() {
@@ -159,6 +165,22 @@ export default {
           }
         )
       }
+    },
+    funcList(newval){
+      let mobileList = document.querySelector('.mobileList')
+      if(!newval){
+        if(this.$store.state.user.administrator){
+          mobileList.classList.add('mobileListClose')
+        }else{
+          mobileList.classList.add('userMobileListClose')
+        }
+      }else{
+        if(this.$store.state.user.administrator){
+          mobileList.classList.remove('mobileListClose')
+        }else{
+          mobileList.classList.remove('userMobileListClose')
+        }
+      }
     }
   },
   beforeDestroy(){
@@ -178,7 +200,15 @@ export default {
     height: 0;
   }
   to {
-    height: 145px;
+    height: 179px;
+  }
+}
+@keyframes hideFuncList {
+  from {
+    height: 179px;
+  }
+  to {
+    height: 0;
   }
 }
 @keyframes userShowFuncList {
@@ -186,20 +216,12 @@ export default {
     height: 0;
   }
   to {
-    height: 110px;
+    height: 144px;
   }
 }
-@keyframes showFuncDiv {
+@keyframes userHideFuncList {
   from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes hideFuncList {
-  from {
-    height: 145px;
+    height: 144px;
   }
   to {
     height: 0;
@@ -222,9 +244,10 @@ export default {
     .qiu:hover,
     .home:hover,
     .note:hover,
-    .resource:hover,
+    .ebook:hover,
     .blog:hover,
-    .login:hover {
+    .login:hover,
+    .resource:hover {
       opacity: 0.9;
       color: white;
       text-shadow: 0 0 5px #ccc;
@@ -236,7 +259,6 @@ export default {
       font-size: 40px;
       font-weight: 600;
       letter-spacing: 3px;
-      // background-color: red;
       cursor: pointer;
       font-family: "微软雅黑";
       user-select: none;
@@ -248,8 +270,9 @@ export default {
     .home,
     .blog,
     .note,
-    .resource,
-    .login {
+    .ebook,
+    .login,
+    .resource {
       text-decoration: none;
       color: rgb(235, 233, 233);
       opacity: 0.7;
@@ -264,20 +287,17 @@ export default {
       width: 40px;
       border-radius: 50%;
       right: 60px;
-      
     }
     .listimg {
       display: none;
     }
     .mobileList{
-
-        position: absolute;
-        right: 120px;
-        
+      position: absolute;
+      right: 120px; 
     }
     .login{
-        position: absolute;
-        right: 10px;
+      position: absolute;
+      right: 10px;
     }
   }
   .navhide{
@@ -304,54 +324,47 @@ export default {
       }
       .navFuncList{
           align-items: center;
-
       }
       .mobileList {
-        animation: showFuncList 0.3s;
         position: absolute;
         right: 0;
         top: 50px;
         width: 90px;
-        height: 145px;
         background-color: rgba(99, 98, 98, 0.4);
         border-radius: 3px;
+        animation: showFuncList 0.3s;
+        overflow: hidden;
+        display: none;
         .home,
         .blog,
         .note,
+        .ebook,
         .resource{
-          position: absolute;
           font-size: 15px;
           width: 70px;
+          height: 35px;
           text-align: center;
           display: inline-block;
-          right: 0;
-          left: 0;
-          margin: 0 auto;
           border-bottom: 1px solid rgb(226, 226, 226);
-          padding-bottom: 9px;
-          animation: showFuncDiv 0.5s;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          margin: 0 auto;
           opacity: 1;
         }
-        .home {
-          top: 9px;
-        }
-        .note {
-          top: 45px;
-        }
-        .resource {
-          top: 81px;
-        }
         .blog {
-          top: 117px;
           border: none;
         }
       }
-      .userMobileList {
+      .mobileListClose{
+        animation: hideFuncList 0.3s;
+      }
+      .userMobileListClose{
+        animation: userHideFuncList 0.3s ;
+      }
+      .userMobileList{
         animation: userShowFuncList 0.3s;
-        height: 110px;
-        .resource {
-          border: none;
-        }
       }
       .portrait {
         width: 40px;

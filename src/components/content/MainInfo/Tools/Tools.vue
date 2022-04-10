@@ -190,4 +190,37 @@ export default {
     }
   }
 }
+
+@media screen and (min-width:280px) and (max-width:912px) {
+  .tools{
+    .toolsTitle{
+      font-size: 25px;
+    }
+    .chunk{
+      .links{
+        justify-content: space-around;
+        .eachLink{
+          width: 48%;
+          .module{
+            .info{
+              .title{
+                font-size: 14px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+              }
+              .content{
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 </style>

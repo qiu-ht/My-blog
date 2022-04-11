@@ -1,7 +1,8 @@
 .DS_Store
 node_modules
 /dist
-
+.ftppass
+gulpfile.js
 
 # local env files
 .env.local

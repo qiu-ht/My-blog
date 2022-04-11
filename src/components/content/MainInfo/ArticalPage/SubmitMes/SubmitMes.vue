@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import dayjs from "dayjs";
 export default {
   name: "SubmitMes",
   props:['blogTitle'],
@@ -73,7 +72,7 @@ export default {
               username: user.username,
               avatar: user.avatar,
               content: this.LeaveMes.mes,
-              publishDate: dayjs().format("YYYY-MM-DD HH:mm"),
+              publishDate: new Date(),
             };
 
             this.$api.leaveMes.submitMes(comment).then((res) => {
@@ -103,13 +102,6 @@ export default {
           return false;
         }
       });
-    },
-  },
-  computed: {
-    publishDate() {
-      return dayjs(this.$store.state.theArtical.publishDate).format(
-        "YYYY-MM-DD"
-      );
     },
   },
 };

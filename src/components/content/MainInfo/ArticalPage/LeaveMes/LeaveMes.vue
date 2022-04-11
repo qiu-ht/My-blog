@@ -38,7 +38,7 @@
               </span>
               <span class="replyContent">
                 <span v-if="!oneReply.toComment">回复
-                <a href="javascript:;" target="_blank" :class="oneReply.acceptorName===oneReply.initiatorName?'acceptorName1':'acceptorName'">@{{ oneReply.acceptorName }}</a>
+                <a href="javascript:;" :class="oneReply.acceptorName===oneReply.initiatorName?'acceptorName1':'acceptorName'">@{{ oneReply.acceptorName }}</a>
                 </span>
                 :{{oneReply.content}}
               </span>
@@ -272,7 +272,8 @@ export default {
               acceptorName: this.acceptorName,
               initiatorAvatar: this.$store.state.user.avatar,
               content: this.replyMes.mes,
-              toComment:this.replyClass==='comment'?true:false
+              toComment:this.replyClass==='comment'?true:false,
+              replyTime: new Date()
             };
             this.$api.leaveMes.submitReply(data).then((res) => {
               if (res.data === "提交成功！") {
@@ -494,8 +495,8 @@ export default {
       margin-right: 25px;
 
       img {
-        width: 38px;
-        height: 38px;
+        width: 35px;
+        height: 35px;
         // box-shadow: 0 0 3px rgb(23, 62, 192);
         border-radius: 50%;
       }
@@ -506,15 +507,18 @@ export default {
       border-bottom: 1px solid rgb(209, 209, 209);
       .username {
         font-size: 14px;
-        color: #707070;
+        color: #79abfa;
         display: block;
         line-height: 25px;
         margin-top: 8px;
+        margin-bottom: 6px;
+        font-weight: bold;
       }
       .mesContent {
         color: rgb(75, 75, 75);
         margin: 0;
         font-size: 16px;
+        margin-bottom: 6px;
       }
       .replyMes {
         display: flex;
@@ -537,7 +541,8 @@ export default {
             word-wrap: break-word;
             position: relative;
             .UserNameInReply {
-              color: #707070;
+              color: #79abfa;
+              font-weight: bold;
             }
             
             .replyContent {
@@ -546,8 +551,9 @@ export default {
               word-wrap:break-word;
               word-break:break-all;
               .acceptorName{
-                color: #5796fa;
+                color: #9f9f9f;
                 text-decoration: none;
+                font-weight: bold;
               }
               .acceptorName1{
                 color: #a7a7a7;

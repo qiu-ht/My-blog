@@ -165,7 +165,7 @@ export default {
   background-color: none !important;
 }
 .artical {
-  width: 950px;
+  width: 90%;
   color: black;
   background-color: #beebfd;
   border-radius: 10px;
@@ -221,7 +221,7 @@ export default {
 }
 .loadingStyle{
   height: 1000px;
-  width: 950px;
+  width: 90%;
 }
 .divider{
   margin-top: 100px;
@@ -253,7 +253,7 @@ export default {
     }
   }
 }
-@media only screen and (min-width: 912px) and (max-width: 1300px){
+@media only screen and (min-width: 912px) and (max-width: 1400px){
   .artical{
     width: 90%;
     font-size: 15px;

@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "up:test": "vue-cli-service build && gulp uploadTest"
+    "up": "vue-cli-service build && gulp uploadTest"
   },
   "dependencies": {
     "animate.css": "^4.1.1",

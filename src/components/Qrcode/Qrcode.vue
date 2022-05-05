@@ -46,6 +46,7 @@ export default {
             this.close = false
             this.$store.state.openQrcode = false
             this.inputverification = ''
+            this.inputwrong = false
         }
     },
 }
@@ -141,7 +142,7 @@ export default {
         .redword{
             position: absolute;
             top: 315px;
-            left: 62px;
+            left: 83px;
             color: red;
             font-size: 13px;
         }
@@ -180,8 +181,13 @@ export default {
                 height: 20px;
                 font-size: 13px;
             }
+            .redword{
+                top:230px;
+                left: 52px;
+                font-size: 12px;
+            }
             .todownloadbtn{
-                top: 240px;
+                top: 245px;
                 height: 20px;
             }
         }

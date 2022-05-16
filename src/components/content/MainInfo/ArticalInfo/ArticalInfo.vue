@@ -161,8 +161,8 @@ export default {
       const articals = await this.$api.artical.getArtical(params)
       this.CurArticals = articals.data
 
-      if(window.screen.width>912) {document.documentElement.scrollTop = 500;}
-      else if(window.screen.width<912 && window.screen.width>280) {document.documentElement.scrollTop = 150;}
+      if(window.screen.width>912) {document.documentElement.scrollTop = 700;}
+      else if(window.screen.width<912 && window.screen.width>280) {document.documentElement.scrollTop = 0;}
     },
 
     readoneArtical(artical){
@@ -191,23 +191,26 @@ export default {
   margin-left: 50px;
   position: relative;
   .oneInfo {
-    width: 95%;
+    width: 100%;
     height: 280px;
-    background-color: #b0e5fa;
+    background-color: aliceblue;
     color: rgb(170, 170, 170);
     border-bottom: 1px solid #80b1e9;
-    box-shadow: 0 0 2px black;
+    box-shadow: 0 0 5px #6ab8f9;
     border-radius: 6px;
     position: relative;
     margin: 0 auto 40px;
-    box-shadow: 0 0 5px black;
+    @media screen and (min-width:912px) {
+      margin-left: -20px;
+    }
+    
     .imgBox{
-      box-shadow: 0 0 5px #fff;
+      box-shadow: 0 0 5px #6ab8f9;
     }
     &:hover {
-      box-shadow: 0 0 2px black;
+      box-shadow: 0 0 5px #0287f4;
       // border-bottom: 1px solid #80b1e9;
-      // transition: 0.5s;
+      transition: 0.2s;
       .imgBox {
         img {
 
@@ -464,6 +467,7 @@ export default {
 
 @media only screen and (min-width: 1100px) and (max-width: 1200px) {
   .mainInfo {
+    width: 90%;
     margin-left: 20px;
     .oneInfo {
       .titleBox {
@@ -478,7 +482,7 @@ export default {
 @media only screen and (min-width: 912px) and (max-width: 1100px) {
   .mainInfo {
     width: 90%;
-    margin-left: 0px;
+    margin-left: 20px;
     .oneInfo {
       .titleBox {
         font-size: 16px;

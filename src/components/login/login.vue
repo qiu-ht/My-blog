@@ -213,8 +213,11 @@ export default {
     .login{
         width: 400px;
         height: 200px;
-
-        margin:250px auto 0;
+        position: relative;
+        margin:0 auto;
+        top: 200px;
+        margin-bottom: calc(~"100vh - 300px");
+        box-shadow: 0 0 2px black;
          .avatar-uploader .el-upload {
             border: 1px dashed #d9d9d9;
             border-radius: 6px;

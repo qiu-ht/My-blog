@@ -102,11 +102,27 @@ export default {
     },
     openEbooks() {
       this.$router.push({name:'ebooks'})
-      document.documentElement.scrollTop = 0
+      if(window.screen.width < 912 ){
+        document.documentElement.scrollTop = 0
+      }else{
+        document.documentElement.scrollTop = 750
+      }
+      setTimeout(()=>{
+        this.showOrHide = true;
+      },50)
+      
     },
     openTools(){
       this.$router.push({name:'tools'})
-      document.documentElement.scrollTop = 0
+      if(window.screen.width < 912 ){
+        document.documentElement.scrollTop = 0
+      }else{
+        document.documentElement.scrollTop = 750
+      }
+      
+      setTimeout(()=>{
+        this.showOrHide = true;
+      },50)
     },
     handleCommand(command) {
       if(command==='quitLogin'){
@@ -118,6 +134,7 @@ export default {
         this.$router.push({path:'/login'})
         document.documentElement.scrollTop=0
       }else if(command==='userCenter'){
+        document.documentElement.scrollTop = 0
         this.$router.push({path:'/userInfo'})
       }
     },
@@ -233,14 +250,14 @@ export default {
     z-index: 2000;
     width: 100%;
     height: 70px;
-    background-color: rgba(172,171,171,.3);
+    background-color: #6ab8f9;
     position: fixed;
     top: 0;
     display: flex;
     align-items: center;
     color: rgb(235, 233, 233);
     transition: 0.5s;
-    box-shadow: 0 0 2px rgb(99, 97, 97);
+    // box-shadow: 0 0 2px rgb(99, 97, 97);
     .qiu:hover,
     .home:hover,
     .note:hover,

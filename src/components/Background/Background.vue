@@ -1,114 +1,495 @@
 <template>
-  <div>
-    <canvas id="solar" width="300px" height="300px" v-if="this.$store.state.userScreen.computer"></canvas>
+  <div class="container">
+    <div id="sky">
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+    </div>
+    <div id="ocean">
+      <div id="boat-container">
+        <div id="boat">
+          <div id="shadow-right"></div>
+          <div id="rim-left"></div>
+          <div id="rim-right"></div>
+          <div id="luggage-right"></div>
+          <div id="luggage-right-shadow"></div>
+          <div id="luggage-left"></div>
+          <div id="luggage-left-shadow"></div>
+        </div>
+        <div id="sailor"></div>
+        <div id="sailor-arm-left"></div>
+        <div id="sailor-arm-right"></div>
+        <span class="sailor-eye"></span>
+        <span class="sailor-eye"></span>
+        <div id="sailor-cap"></div>
+        <div id="rim"></div>
+      </div>
+
+      <svg
+        class="waves"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28"
+        preserveAspectRatio="none"
+        shape-rendering="auto"
+      >
+        <defs>
+          <path
+            id="gentle-wave"
+            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+          />
+        </defs>
+        <g class="parallax">
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="0"
+            fill="rgba(155, 220, 251, 0.7"
+          />
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="3"
+            fill="rgba(129, 204, 250,0.5)"
+          />
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="5"
+            fill="rgba(255,255,255,0.3)"
+          />
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="7"
+            fill="rgba(184, 236, 253, 1)"
+          />
+        </g>
+      </svg>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: "Background",
-  mounted() {
-    //绘制时钟
-    init();
-
-    function init() {
-      let canvas = document.querySelector("#solar");
-      let ctx = canvas.getContext("2d");
-      draw(ctx);
-    }
-
-    function draw(ctx) {
-      requestAnimationFrame(function step() {
-        drawDial(ctx); //绘制表盘
-        drawAllHands(ctx); //绘制时分秒针
-        requestAnimationFrame(step);
-      });
-    }
-    /*绘制时分秒针*/
-    function drawAllHands(ctx) {
-      let time = new Date();
-
-      let s = time.getSeconds();
-      let m = time.getMinutes();
-      let h = time.getHours();
-
-      let pi = Math.PI;
-      let secondAngle = (pi / 180) * 6 * s; //计算出来s针的弧度
-      let minuteAngle = (pi / 180) * 6 * m + secondAngle / 60; //计算出来分针的弧度
-      let hourAngle = (pi / 180) * 30 * h + minuteAngle / 12; //计算出来时针的弧度
-
-      drawHand(hourAngle, 60, 6, "red", ctx); //绘制时针
-      drawHand(minuteAngle, 106, 4, "green", ctx); //绘制分针
-      drawHand(secondAngle, 129, 2, "blue", ctx); //绘制秒针
-    }
-    /*绘制时针、或分针、或秒针
-     * 参数1：要绘制的针的角度
-     * 参数2：要绘制的针的长度
-     * 参数3：要绘制的针的宽度
-     * 参数4：要绘制的针的颜色
-     * 参数4：ctx
-     * */
-    function drawHand(angle, len, width, color, ctx) {
-      ctx.save();
-      ctx.translate(150, 150); //把坐标轴的远点平移到原来的中心
-      ctx.rotate(-Math.PI / 2 + angle); //旋转坐标轴。 x轴就是针的角度
-      ctx.beginPath();
-      ctx.moveTo(-4, 0);
-      ctx.lineTo(len, 0); // 沿着x轴绘制针
-      ctx.lineWidth = width;
-      ctx.strokeStyle = color;
-      ctx.lineCap = "round";
-      ctx.stroke();
-      ctx.closePath();
-      ctx.restore();
-    }
-
-    /*绘制表盘*/
-    function drawDial(ctx) {
-      let pi = Math.PI;
-
-      ctx.clearRect(0, 0, 300, 300); //清除所有内容
-      ctx.save();
-
-      ctx.translate(150, 150); //一定坐标原点到原来的中心
-      ctx.beginPath();
-      ctx.arc(0, 0, 148, 0, 2 * pi); //绘制圆周
-      ctx.stroke();
-      ctx.closePath();
-
-      for (let i = 0; i < 60; i++) {
-        //绘制刻度。
-        ctx.save();
-        ctx.rotate(-pi / 2 + (i * pi) / 30); //旋转坐标轴。坐标轴x的正方形从 向上开始算起
-        ctx.beginPath();
-        ctx.moveTo(110, 0);
-        ctx.lineTo(140, 0);
-        ctx.lineWidth = i % 5 ? 2 : 4;
-        ctx.strokeStyle = i % 5 ? "blue" : "red";
-        ctx.stroke();
-        ctx.closePath();
-        ctx.restore();
-      }
-      ctx.restore();
-    }
-  },
-};
+export default {};
 </script>
 
-<style lang='less' scope>
-#solar {
-  position: fixed;
-  // background-color: red;
-  top: 100px;
-  left: 60px;
+<style scoped>
+.container {
+  position: absolute;
+  background: #6ab8f9;
+  width: 100%;
+  overflow: hidden;
+  
 }
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-  #solar {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+.container #sky {
+  height: 62.5vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  
+}
+.container #sky .cloud {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  right: 750px;
+  bottom: 150px;
+  height: 125px;
+  width: 125px;
+  border-radius: 50%;
+  background-color: white;
+  opacity: 0.6;
+}
+.container #sky .cloud:nth-of-type(2) {
+  bottom: 250px;
+  left: 1150px;
+}
+.container #sky .cloud::before {
+  content: "";
+  position: absolute;
+  left: 80px;
+  top: 40px;
+  height: 85px;
+  width: 85px;
+  border-radius: 50%;
+  background-color: white;
+}
+.container #sky .cloud::after {
+  content: "";
+  position: absolute;
+  left: -40px;
+  top: 35px;
+  height: 85px;
+  width: 85px;
+  border-radius: 50%;
+  background-color: white;
+}
+.container #ocean #boat-container {
+  animation: boatsway 3s ease-in-out infinite alternate;
+}
+@keyframes boatsway {
+  from {
+    transform: rotate(-5.5deg);
   }
+  to {
+    transform: rotate(5.5deg);
+  }
+}
+.container #ocean #boat-container #boat {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  top: 45px;
+  width: 400px;
+  height: 100px;
+  background-color: #225cee;
+  border-bottom-right-radius: 5rem;
+  border-bottom-left-radius: 5rem;
+  z-index: 3;
+  transform-style: preserve-3d;
+}
+.container #ocean #boat-container #boat::before {
+  content: "";
+  position: absolute;
+  height: 125px;
+  width: 125px;
+  left: 225px;
+  bottom: 0px;
+  border-top-left-radius: 4rem;
+  border-bottom-right-radius: 5rem;
+  background-color: #225cee;
+  z-index: 3;
+}
+.container #ocean #boat-container #boat::after {
+  content: "";
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  left: 222.5px;
+  bottom: 45px;
+  border-radius: 4rem;
+  background-color: #fadd5f;
+  transform: translateZ(-1px);
+}
+.container #ocean #boat-container #boat #shadow-right {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  left: 200px;
+  height: 100px;
+  width: 100px;
+  height: 125px;
+  width: 125px;
+  left: 275px;
+  bottom: 25px;
+  border-top-left-radius: 4rem;
+  border-bottom-right-radius: 5rem;
+  background-color: #063ad4;
+  z-index: 2;
+}
+.container #ocean #boat-container #boat #rim-left {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 22.5px;
+  background-color: #fadd5f;
+  border-radius: 5rem;
+  left: -180px;
+  bottom: 115px;
+  z-index: 3;
+}
+.container #ocean #boat-container #boat #rim-right {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  width: 155px;
+  height: 20px;
+  background-color: #fadd5f;
+  border-radius: 5rem;
+  right: -290px;
+  bottom: 170px;
+  z-index: 5;
+}
+.container #ocean #boat-container #boat #rim-right::before {
+  content: "";
+  position: absolute;
+  width: 55px;
+  right: 0px;
+  height: 20px;
+  background-color: #f5b748;
+  border-radius: 5rem;
+}
+.container #ocean #boat-container #boat #rim-right::after {
+  content: "";
+  position: absolute;
+  width: 55px;
+  right: 40px;
+  height: 20px;
+  background-color: #fadd5f;
+  border-radius: 5rem;
+}
+.container #ocean #boat-container #boat #luggage-right {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 180px;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  width: 90px;
+  height: 50px;
+  left: 295px;
+  opacity: 0.7;
+  background-color: #b8ecfd;
+}
+.container #ocean #boat-container #boat #luggage-right::before {
+  content: "";
+  position: absolute;
+  bottom: 40px;
+  left: 20px;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  height: 27.5px;
+  width: 50px;
+  background-color: #b8ecfd;
+}
+.container #ocean #boat-container #boat #luggage-right::after {
+  content: "";
+  position: absolute;
+  bottom: 50px;
+  left: 30.5px;
+  height: 7.5px;
+  width: 30px;
+  background-color: #6ab8f9;
+}
+.container #ocean #boat-container #boat #luggage-right-shadow {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 180px;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  width: 50px;
+  height: 50px;
+  left: 257.5px;
+  opacity: 0.7;
+  background-color: white;
+}
+.container #ocean #boat-container #boat #luggage-left {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  left: -380px;
+  bottom: 143px;
+  width: 110px;
+  height: 70px;
+  border-radius: 1rem;
+  background-color: #b8ecfd;
+  opaciy: 0.7;
+  transform: translateZ(-1px);
+}
+.container #ocean #boat-container #boat #luggage-left::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  width: 80px;
+  height: 57.5px;
+  background-color: white;
+  border-radius: 1rem;
+}
+.container #ocean #boat-container #boat #luggage-left::after {
+  content: "";
+  position: absolute;
+  top: 12.5px;
+  left: -2.5px;
+  width: 37.5px;
+  height: 12.5px;
+  background-color: #fadd5f;
+  border-radius: 1rem;
+}
+.container #ocean #boat-container #sailor {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  top: -165px;
+  height: 110px;
+  width: 97.5px;
+  right: 115px;
+  border-top-left-radius: 4rem;
+  border-top-right-radius: 4rem;
+  background-color: #ec4e2f;
+  z-index: 1;
+}
+.container #ocean #boat-container #sailor::before {
+  content: "";
+  position: absolute;
+  width: 14.5px;
+  height: 8.5px;
+  background-color: black;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  top: 70.5px;
+  left: 35.5px;
+}
+.container #ocean #boat-container #sailor-arm-left {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  left: -65.5px;
+  top: -70px;
+  height: 55px;
+  width: 30px;
+  background-color: #ec4e2f;
+  z-index: 6;
+  transform: translateZ(1px);
+  border-radius: 4rem;
+}
+.container #ocean #boat-container #sailor-arm-right {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  left: -235.5px;
+  top: -145px;
+  height: 30px;
+  width: 65px;
+  background-color: #ec4e2f;
+  z-index: 6;
+  transform: translateZ(1px);
+  border-radius: 4rem;
+  transform-origin: right center;
+  animation: wave 0.85s infinite alternate ease-in-out;
+}
+@keyframes wave {
+  from {
+    transform: rotate(-15deg);
+  }
+  to {
+    transform: rotate(15deg);
+  }
+}
+.container #ocean #boat-container .sailor-eye {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  left: -162.5px;
+  bottom: 180px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  z-index: 7;
+}
+.container #ocean #boat-container .sailor-eye:nth-of-type(2) {
+  left: -87.5px;
+}
+.container #ocean #boat-container .sailor-eye::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+  top: 9px;
+  left: 10px;
+}
+.container #ocean #boat-container #sailor-cap {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 255px;
+  right: 80px;
+  height: 50px;
+  width: 37.5px;
+  border-top-left-radius: 12.5px;
+  border-top-right-radius: 12.5px;
+  background-color: #f5b748;
+  transform: rotate(20deg);
+}
+.container #ocean #boat-container #sailor-cap::before {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: 5px;
+  height: 50px;
+  width: 27.5px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: #fadd5f;
+  transform: rotate(-50deg);
+}
+.container #ocean .waves {
+  position: relative;
+  width: 100%;
+  height: 15vh;
+  margin-bottom: -7px;
+  min-height: 100px;
+  max-height: 150px;
+  z-index: 10;
+}
+.container #ocean .parallax > use {
+  animation: tide 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+@keyframes tide {
+  from {
+    transform: translate3d(-90px, 0, 0);
+  }
+  to {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+.container #ocean .parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.container #ocean .parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.container #ocean .parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.container #ocean .parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
 }
 </style>

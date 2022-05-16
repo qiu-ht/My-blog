@@ -1,6 +1,6 @@
 <template>
   <div class="resource">
-      <div class="line"></div>
+      <div class="bg"></div>
       <div class="title">资源</div>
       <div v-for="(resource,index) in resource" :key="index">
             <router-link :to="{
@@ -41,7 +41,7 @@ export default {
         changeOpenState(){
             this.$store.state.frontendOpend = false
             this.$store.state.othersOpend = false
-            document.documentElement.scrollTop = 500
+            document.documentElement.scrollTop = 700
         }
     }
 }
@@ -52,40 +52,38 @@ export default {
         position: relative;
         width: 100%;
         height: 300px;
-        background-color: #6bcff7;
+        background-color: aliceblue;
         box-shadow: 0 0 5px black;
-        border-radius: 10px;
         border-top-left-radius: 0;
         overflow: hidden;
         color: rgb(29, 29, 29);
         font-size: 20px;
         margin-top: 50px;
-        .line{
-            width: 10px;
-            height: 40px;
-            background-color: black;
-            opacity: 0.5;
+        .bg{
             position: absolute;
-            left: 0;
+            height: 50px;
+            width: 100%;
+            background-color: #6ab8f9;
         }
         .title{
-            color: black;
+            width: 100%;
+            color: aliceblue;
             font-size: 20px;
             position: absolute;
-            left: 15px;
+            text-align: center;
             line-height: 40px;
+            margin-top: 5px;
         }
         .articalLink{
             text-decoration: none;
         }
         .artical{
             width: 80%;
-            background-color: #6bcff7;
+            background-color: aliceblue;
             opacity: 0.6;
             color: black;
-            border-radius: 5px;
             // box-shadow: 0 0 5px black;
-            border-bottom: 1px solid #80b1e9;
+            // border-bottom: 1px solid #80b1e9;
             border-top: 1px solid #80b1e9;
             font-size: 16px;
             padding: 5px 10px;
@@ -93,21 +91,24 @@ export default {
             cursor: pointer;
             margin: 0 auto;
             overflow: hidden;
-            
             &:hover{
-                opacity: 0.8;
-                transform: scale(1.05,1.05);
-                transition: 0.3s;
+                .articalTitle{
+                    transform: scale(1.05,1.05) translateX(5px);
+                    transition: 0.2s;
+                    text-shadow: 0 0 2px black;  
+                }
+                
             }
+            
             .articalTitle{
                 padding-left: 10px;
                 padding-top: 5px;
-                width: 90%;
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 1;
                 text-overflow: ellipsis;
                 overflow: hidden; 
+                // background-color: red;
             }
             .publishDate{
                 margin-top: 5px;
@@ -117,6 +118,7 @@ export default {
         }
         .artical1{
             margin-top: 80px;
+            border-top: none;
         }
     }
     @media only screen and (min-width: 280px) and (max-width: 912px){

@@ -76,7 +76,7 @@ export default {
             margin-top: 10px;
             color: #606266;
             &:hover{
-                background-color: #5394b9;
+                background-color: #6ab8f9;
                 color: #fff;
                 transition: 0.2s;
             }
@@ -87,7 +87,7 @@ export default {
             margin-right:5px;
         }
         .active{
-            background-color: #5394b9;
+            background-color: #6ab8f9;
             color: #fff;
         }
         .restPage{

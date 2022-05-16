@@ -61,8 +61,7 @@ export default {
     width: 90%;
     margin: 0 auto;
     .frontEnd,.others{
-      background-color:rgb(230, 228, 228);
-      opacity: 0.5 ;
+      background-color:#6ab8f9;
       box-shadow: 0 0 5px black;
       width: 100%;
       height: 330px;
@@ -81,6 +80,7 @@ export default {
       .bigfont1,.bigfont2{
         font-size: 120px;
         text-align: center;
+        color: aliceblue;
       }
       .line{
         position: absolute;
@@ -88,7 +88,7 @@ export default {
         left: 0;
         width: 10px;
         height: 40px;
-        background-color: black;
+        background-color: aliceblue;
       }
     }
     

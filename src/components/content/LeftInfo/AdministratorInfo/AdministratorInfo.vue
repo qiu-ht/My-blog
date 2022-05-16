@@ -41,16 +41,15 @@ export default {
         width: 100%;
         padding: 30px 0;
         // height: 170px;
-        background-color: #6bcff7;
+        background-color: #6ab8f9;
         box-shadow: 0 0 5px black;
-        border-radius: 10px;
         margin-bottom: 20px;
-        font-size: 16px;
+        font-size: 15px;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-content: center;
-
+        color: aliceblue;
         .baseInfo{
             width: 66%;
             display: flex;

@@ -19,7 +19,7 @@ body {
 .loadingbg{
   width: 100%;
   height: 100vh;
-  background-color: #6BCFF7;
+  background-color: #6ab8f9;
   z-index: 8888888;
 }
 .loading {

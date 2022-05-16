@@ -162,10 +162,13 @@
         background-color: #fff;
         width: 600px;
         height: 600px;
-        margin: 100px auto 0;
+        margin: 0 auto;
         padding: 50px;
+        top: 100px;
         box-sizing: border-box;
         border-radius: 10px;
+        position: relative;
+        z-index: 111;
         .el-form-item{
             width: 80%;
         }

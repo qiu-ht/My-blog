@@ -167,7 +167,7 @@ export default {
 .artical {
   width: 90%;
   color: black;
-  background-color: #beebfd;
+  background-color: aliceblue;
   border-radius: 10px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -176,6 +176,7 @@ export default {
   margin: 0 auto;
   position: relative;
   overflow: auto;
+  z-index: 999;
   .loading{
     font-size: 30px;
     position: absolute;

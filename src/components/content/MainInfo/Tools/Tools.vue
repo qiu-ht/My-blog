@@ -1,5 +1,6 @@
 <template>
   <div class="tools">
+    <div class="bg"></div>
     <h1 class="toolsTitle">工具</h1>
     <div class="chunk" v-for="(eachChunk,index1) in chunk" :key="index1">
       <el-divider content-position="left">{{eachChunk.chunkname}}</el-divider>
@@ -114,9 +115,13 @@ export default {
   margin: 0 auto;
   border-radius: 10px;
   overflow: hidden;
+  background-color: #6ab8f9;
+  position: relative;
+  z-index: 99;
   .toolsTitle {
     text-align: center;
     margin: 40px 0 40px;
+    color: aliceblue;
   }
 
   .chunk {
@@ -128,7 +133,8 @@ export default {
       
     }
     /deep/ .el-divider__text {
-      background-color: #6bcff7;
+      background-color: #9bd2ff;
+      color: aliceblue;
       
     }
     .links {
@@ -143,12 +149,13 @@ export default {
         justify-content: center;
         margin-top: 20px;
         .module {
-          background-color: #9be3ff;
-          width: 250px;
+          background-color: aliceblue;
+          width: 85%;
           display: flex;
           border-radius: 5px;
           padding: 0 10px;
           transition: 0.3s;
+          box-shadow: 0 0 2px #6ab8f9;
           &:hover {
             box-shadow: 0 1px 3px black;
             transform: translate(0, -5px);
@@ -176,13 +183,14 @@ export default {
               width: 100%;
               position: absolute;
               top: 10px;
+              color: rgb(120, 120, 120);
             }
             .content {
               top: 50%;
               position: absolute;
               width: 100%;
               font-size: 13px;
-              color: rgb(154, 154, 154);
+              color: rgb(169, 169, 169);
             }
           }
         }
@@ -193,6 +201,7 @@ export default {
 
 @media screen and (min-width:280px) and (max-width:912px) {
   .tools{
+    margin-top: 50px;
     .toolsTitle{
       font-size: 25px;
     }

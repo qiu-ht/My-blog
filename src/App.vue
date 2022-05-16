@@ -85,7 +85,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url("https://at.alicdn.com/t/font_3261344_cuuo0phcu2m.css");
+@import url("https://at.alicdn.com/t/font_3261344_sy722qwo6w.css");
 
 .cover {
   position: fixed;
@@ -100,7 +100,7 @@ body {
   position: relative;
   padding: 0;
   margin: 0;
-  background-color: #6bcff7;
+  background-color: #b8ecfd;
 
 }
 .v-show-content {

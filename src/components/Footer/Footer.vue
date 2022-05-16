@@ -66,11 +66,11 @@ export default {
         z-index: 1000;
         width: 100%;
         height: 100px;
-        background-color: rgba(17, 6, 6, 0.5);
+        background-color: #6ab8f9;
         text-align: center;
         margin-top: 500px;
         .aboutMe,.contactMe,.followMe{
-            color: #ccc;
+            color: #ebe9e9;
             text-decoration: none;
             z-index: 10000;
             &:hover{
@@ -125,9 +125,9 @@ export default {
         }
         .num{
           text-decoration: none;
-          color: rgb(124, 121, 121);
+          color: #ebe9e9;
           &:hover{
-            color: #ccc;
+            color: #fff;
           }
         }
         

@@ -1,6 +1,7 @@
 <template>
   <div class="bookpage">
     <i class="iconfont icon-back back" v-show="exitImgShow" @click="back"></i>
+    <div class="bg"></div>
     <div class="bookopend" >
       <h1 class="bigfont1" ref="bigfont1">{{booktype==='frontend'?'front-end':'others'}}</h1>
     </div>
@@ -345,12 +346,24 @@ export default {
   flex-direction: column;
   align-items: center;
   flex-wrap: nowrap;
-  background-color: #6BCFF7;
+  background-color: aliceblue;
   box-shadow: 0 0 5px black;
-  border-radius: 10px;
   padding-bottom: 40px;
   position: relative;
   animation: zoomInRight 0.7s;
+  z-index: 99;
+  .bg{
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    background-color: #6ab8f9;
+  }
+  .bookopend{
+    .bigfont1{
+      position: relative;
+      color: aliceblue;
+    }
+  }
   .searchChunk{
     position: relative;
     display: flex;
@@ -366,12 +379,15 @@ export default {
       margin-bottom: 5px;
       &:focus {
         outline: none;
+        transform: scale(1.05,1.05);
+        transition: 0.3s;
       }
     }
     i{
       line-height: 30px;
-      margin-left: -20px;
+      margin-left: -25px;
       cursor: pointer;
+      z-index: 99;
     }
   }
   .claim{
@@ -439,11 +455,12 @@ export default {
           cursor: pointer;
           transition: 0.3s;
           margin-bottom: 5px;
+          box-shadow: 0 0 5px black;
         }
         .active{
           &:hover{
             transform:scale(1.05, 1.05);
-            box-shadow: 0 0 5px black;
+            box-shadow: 0 0 5px #3da7ed;
           }
         }
         span {
@@ -476,7 +493,9 @@ export default {
 
 @media only screen and (min-width: 280px) and (max-width: 912px) {
   .bookpage{
+    width: 95%;
     height: 1100px;
+    margin-top: 100px;
     flex-wrap: nowrap;
     .bookopend{
       .bigfont1{
@@ -494,8 +513,12 @@ export default {
     }
     .searchChunk{
       .searchinput{
+        margin-top: 15px;
         width: 250px;
         height: 30px;
+      }
+      i{
+        margin-top: 15px;
       }
     }
     .claim{

@@ -28,7 +28,7 @@ export default {
     // background-color: red;
     display: flex;
     justify-content: center;
-    margin-top: 450px;
+    padding-top: 100vh;
   }
   .messageBoard{
     height: 1000px;
@@ -72,7 +72,7 @@ export default {
   }
   @media only screen and (min-width: 280px) and (max-width:912px){
     .content{
-      margin-top: 60px;
+      padding-top: 0;
     }
     .messageBoard{
       height: 630px;

@@ -6,7 +6,7 @@ npm i
 本地运行：
 ```js
 npm run serve 
-``` 
+```
 打包：
 ```js
 npm run build 

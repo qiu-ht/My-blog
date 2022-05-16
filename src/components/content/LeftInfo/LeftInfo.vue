@@ -1,6 +1,7 @@
 <template>
   <div class="leftInfo">
         <AdminstratorInfo/>
+        <Calendar/>
         <MyArtical/>
         <Note/>
         <Resource/>
@@ -12,13 +13,14 @@ import AdminstratorInfo from './AdministratorInfo/AdministratorInfo.vue'
 import MyArtical from './MyArtical/MyArtical.vue' 
 import Resource from './Resource/Resource.vue'
 import Note from './Note/MyNote.vue'
+import Calendar from './Calendar/MyCalendar.vue'
 export default {
     data() {
         return {
             
         }
     },
-    components:{AdminstratorInfo,MyArtical,Resource,Note}
+    components:{AdminstratorInfo,MyArtical,Resource,Note,Calendar}
 }
 </script>
 
@@ -27,9 +29,9 @@ export default {
     .leftInfo{
         // z-index: 100;
         padding-top: 40px;
-        width: 29%;
+        width: 32%;
         // height: 2000px;
-        margin-left: 3%;
+        margin-left: 4%;
         z-index: 100;
         // background-color: #bfa;
     }

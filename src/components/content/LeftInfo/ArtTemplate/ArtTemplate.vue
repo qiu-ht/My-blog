@@ -1,6 +1,6 @@
 <template>
   <div class="myArtical">
-    <div class="line"></div>
+    <div class="bg"></div>
     <!-- 笔记 -->
     <div class="title">我的{{Articalclass==='artical'?'文章':'笔记'}}</div>
     <div class="inputChunk">
@@ -11,7 +11,7 @@
         v-model="keyword"
         @keyup="search"
       />
-      <i class="el-icon-search searchimg" @click="search"></i>
+      <i class="iconfont icon-sousuo searchimg" @click="search"></i>
     </div>
     
     <!-- CurNotes -->
@@ -111,7 +111,7 @@ export default {
   },
   methods: {
     openTheArtical() {
-      document.documentElement.scrollTop = 500;
+      document.documentElement.scrollTop = 700;
     },
     search() {
       if(this.timeOut){
@@ -148,8 +148,8 @@ export default {
     },
     async changePage(CurPageIndex) {
       this.loading = true
-      if (document.documentElement.scrollTop > 500 && this.Articalclass==='artical') {
-        document.documentElement.scrollTop = 600;
+      if (document.documentElement.scrollTop > 1400 && this.Articalclass==='artical') {
+        document.documentElement.scrollTop = 1400;
       }
       this.curPageIndex=CurPageIndex
       const params = {
@@ -222,20 +222,18 @@ export default {
   position: relative;
   width: 100%;
   height: 600px;
-  background-color: #6bcff7;
+  background-color: aliceblue;
   box-shadow: 0 0 5px black;
-  border-radius: 10px;
   border-top-left-radius: 0;
   overflow: hidden;
   color: rgb(29, 29, 29);
   font-size: 20px;
-  .line {
-    width: 10px;
-    height: 40px;
-    background-color: black;
-    opacity: 0.5;
+  z-index: 99;
+  .bg{
     position: absolute;
-    left: 0;
+    width: 100%;
+    height: 85px;
+    background-color: #6ab8f9;
   }
   .inputChunk{
     position: absolute;
@@ -247,45 +245,53 @@ export default {
     .searchinput {
       width: 100%;
       height: 30px;
-      border: rgba(230, 228, 228, 0.5);
+      border: none;
       border-radius: 15px;
-      color: rgb(170, 169, 169);
+      color: #3da7ed;
       text-indent: 15px;
+      background-color: aliceblue;
+      box-shadow: 0 0 2px #3da7ed;
       &:focus {
         outline: none;
+        box-shadow: 0 0 5px #3da7ed;
+        transform: scale(1.05,1.05);
+        transition: 00.3s;
       }
     }
     .searchimg {
       position: absolute;
       width: 25px;
       right: 0;
-      top: 5px;
+      top: 8px;
       cursor: pointer;
       user-select: none;
 
       &:hover {
         transition: 0.3s;
-        color: #87ceeb;
+        color: #d9e8f7;
       }
     }
   }
   
   .title {
+    margin-top: 10px;
     position: absolute;
-    left: 15px;
     line-height: 40px;
+    width: 100%;
+    color: aliceblue;
+    text-align: center;
   }
   .articalLink {
     display: block;
     text-decoration: none;
     .artical {
       width: 80%;
-      background-color: #6bcff7;
+      background-color: aliceblue;
       opacity: 0.6;
       color: black;
       // box-shadow: 0 0 5px black;
-      border-bottom: 1px solid #80b1e9;
-      // border-top: 1px solid #80b1e9;
+      // border-bottom: 1px solid #80b1e9;
+      border-top: 1px solid #80b1e9;
       font-size: 16px;
       padding: 5px 10px;
       position: relative;
@@ -293,9 +299,12 @@ export default {
       margin: 0 auto;
       overflow: hidden;
       &:hover {
-        opacity: 0.8;
-        transform: scale(1.03, 1.03);
-        transition: 0.3s;
+        .articalTitle{
+          transform: scale(1.05, 1.05) translateX(5px);
+          transition: 0.2s;
+          text-shadow: 0 0 2px black;
+        } 
+        
       }
       .articalTitle {
         padding-left: 10px;
@@ -338,7 +347,7 @@ export default {
     }
     .artical1{
       margin-top: 150px;
-      border-top: 1px solid #80b1e9;
+      border-top: none;
     }
   }
   .loading{

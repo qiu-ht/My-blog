@@ -119,12 +119,10 @@ export default {
       display: inline-block;
       margin-top: 2px;
       margin-right: 10px;
-      // box-shadow: 0 0 3px black;
-      // border: 1px solid rgb(101, 156, 240);
       padding: 2px;
+
     }
     .form{
-      // display: inline-block;
       width: 85%;
 
     }

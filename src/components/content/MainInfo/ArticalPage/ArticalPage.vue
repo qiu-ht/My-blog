@@ -254,6 +254,9 @@ export default {
     }
   }
 }
+@media screen and (min-width:280px) and (max-width:350px) {
+  
+}
 @media only screen and (min-width: 912px) and (max-width: 1400px){
   .artical{
     width: 90%;

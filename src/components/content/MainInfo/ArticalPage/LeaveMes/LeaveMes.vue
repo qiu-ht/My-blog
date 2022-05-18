@@ -40,7 +40,7 @@
                 <span v-if="!oneReply.toComment">回复
                 <a href="javascript:;" :class="oneReply.acceptorName===oneReply.initiatorName?'acceptorName1':'acceptorName'">@{{ oneReply.acceptorName }}</a>
                 </span>
-                :{{oneReply.content}}
+                : {{oneReply.content}}
               </span>
             </div>
 
@@ -650,7 +650,7 @@ export default {
         font-size: 15px;
       }
       .replyMes {
-        background-color: #b3ecfd;
+        // background-color: #b3ecfd;
         padding: 0 5px;
         .replyAvatar {
           margin-right: 5px;

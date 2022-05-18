@@ -169,13 +169,20 @@ export default {
         }
       }
     }
-    .operationList {
-      .icon-liebiao-dian {
-        &:hover {
-          color: rgb(148, 147, 147);
+    .operation{
+      .icon-liebiao-dian{
+        bottom: -11px;
+      }
+      .operationList {
+        right: -10px;
+        .icon-liebiao-dian {
+          &:hover {
+            color: rgb(148, 147, 147);
+          }
         }
       }
     }
+    
   }
 }
 </style>

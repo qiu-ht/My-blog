@@ -42,7 +42,7 @@
         <div class="eachbook">
           <i class="iconfont icon-guanbi closebtn" @click="deleteBook(ebook.name)" v-show="isEdit" alt="" ></i>
           <img
-            src="http://iph.href.lu/100x140?fg=8bdeff&bg=8bdeff"
+            src="http://iph.href.lu/100x140?fg=f0f0f0&bg=f0f0f0"
             :data-src="ebook.firstpage"
             alt=""
             :class="isEdit&&curindex===index?'frontendbookimg':'frontendbookimg active'"
@@ -370,7 +370,7 @@ export default {
     justify-content: center;
     width: 100%;
     .searchinput{
-      width: 500px;
+      width: 60%;
       height: 30px;
       border: rgba(230, 228, 228, 0.5);
       border-radius: 15px;
@@ -384,8 +384,9 @@ export default {
       }
     }
     i{
+      position: absolute;
       line-height: 30px;
-      margin-left: -25px;
+      right: calc(~"20% + 10px");
       cursor: pointer;
       z-index: 99;
     }
@@ -396,7 +397,7 @@ export default {
     margin-bottom: 20px;
   }
   .handleBooks{
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     width: 150px;
     position: relative;
     .addbook{
@@ -421,7 +422,7 @@ export default {
   .frontend {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    // justify-content: center;
     width: 88%;
     align-items: flex-start;
     
@@ -436,6 +437,7 @@ export default {
       .eachbook{
         width: 100px;
         text-align: center;
+        margin-bottom: 25px;
         .closebtn{
           width: 25px;
           height: 25px;
@@ -455,7 +457,7 @@ export default {
           cursor: pointer;
           transition: 0.3s;
           margin-bottom: 5px;
-          box-shadow: 0 0 5px black;
+          box-shadow: 0 0 2px black;
         }
         .active{
           &:hover{
@@ -467,6 +469,12 @@ export default {
           width: 100px;
           font-size: 12px;
           color: black;
+          display: -webkit-box;
+          -webkit-box-orient:vertical;
+          -webkit-line-clamp: 2;
+          text-overflow: ellipsis;
+          overflow: hidden;
+
         }
       }
       
@@ -514,26 +522,30 @@ export default {
     .searchChunk{
       .searchinput{
         margin-top: 15px;
-        width: 250px;
+        width: 80%;
         height: 30px;
       }
       i{
         margin-top: 15px;
+        right: calc(~"10% + 10px");
       }
     }
     .claim{
       text-align: center;
-      width: 60%;
+      width: 80%;
       color: #707070;
       font-size: 10px;
       margin-bottom: 20px;
     }
     .frontend {
-      width: 100%;
-      justify-content: space-around;
+      width: 95%;
+
+      // justify-content: space-around;
       .books {
-        width: 30%;
+        width: calc(~"1/3 * 100%");
         .eachbook{
+          font-size: 12px;
+          margin-bottom: 20px;
           .closebtn{
             top: -5px;
             left: -5px;
@@ -542,6 +554,11 @@ export default {
               transition: 0.3s;
             }
           }
+          .frontendbookimg{
+            width: 90%;
+            height: 140px;
+          }
+          
           .active{
             &:hover{
               transform:scale(1, 1);
@@ -562,5 +579,37 @@ export default {
   }
   
 }
-
+@media screen and (min-width:280px) and (max-width:350px){
+  .bookpage{
+    height: 900px;
+    .frontend{
+      .books{
+        .eachbook{
+          margin-bottom: 10px;
+          .frontendbookimg{
+            width: 80%;
+            height: 100px;
+          }
+          span{
+            width: 90%;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width:350px) and (max-width:450px){
+  .bookpage{
+    height: 1000px;
+    .frontend{
+      .books{
+        .eachbook{
+          .frontendbookimg{
+            height: 120px;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

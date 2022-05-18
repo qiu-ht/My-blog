@@ -17,18 +17,19 @@
             >电子书</span
           >
           <span
-            class="resource"
-            :to="{ name: 'ebooks' }"
-            @click="openTools"
-            >工具</span
-          >
-          <span
             class="blog"
             v-if="this.$store.state.user.administrator"
             @click="toBlog"
           >
             写博客
           </span>
+          <span
+            class="resource"
+            :to="{ name: 'ebooks' }"
+            @click="openTools"
+            >工具</span
+          >
+          
         </div>
         
         <el-dropdown trigger="click" placement="bottom" class="portrait" @command="handleCommand">
@@ -86,9 +87,7 @@ export default {
       let mobileList = document.querySelector('.mobileList')
       if(this.funcList){
         this.funcList = false
-        setTimeout(()=>{
-          mobileList.style.display = 'none'
-        },300)
+        mobileList.style.display = 'none'
       }else{
         this.funcList = true
         mobileList.style.display = 'block'
@@ -295,7 +294,7 @@ export default {
       opacity: 0.7;
       font-size: 20px;
       cursor: pointer;
-      margin-right: 20px;
+      margin-right: 40px;
     }
 
     .portrait {
@@ -370,7 +369,7 @@ export default {
           margin: 0 auto;
           opacity: 1;
         }
-        .blog {
+        .resource {
           border: none;
         }
       }

@@ -66,6 +66,7 @@ export default {
       width: 100%;
       height: 330px;
       top: 0;
+      z-index: 111;
       cursor: pointer;
       margin-bottom: 50px;
       display: flex;

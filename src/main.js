@@ -46,6 +46,13 @@ Vue.prototype.$api = api
 import store from '../store'
 import router from './router/index'
 
+router.beforeEach((to,from,next)=>{
+  if(to.meta.title){
+    document.title = to.meta.title
+  }
+  next()
+})
+
 new Vue({
   beforeCreate(){
     Vue.prototype.$bus = this

@@ -24,6 +24,9 @@ export default new Router({
             path:'/',
             component:Content,
             props:true,
+            metaL:{
+                title:'涛~的个人博客'
+            },
             children:[
                 {
                     path:'/',
@@ -41,41 +44,65 @@ export default new Router({
                             name:'artical',
                             path:'articalPage',
                             component:ArticalPage,
+                            meta:{
+                                title:'文章详情'
+                            }
                         },
                         {
                             name:'ebooks',
                             path:'/resource/ebook',
-                            component:Ebooks
+                            component:Ebooks,
+                            meta:{
+                                title:'电子书'
+                            }
                         },
                         {
                             name:'frontEndBook',
                             path:'/resource/ebooks/frontEndBook',
                             component:frontendEbooks,
+                            meta:{
+                                title:'前端书籍'
+                            }
                         },
                         {
                             name:"otherBook",
                             path:"/resource/ebooks/otherBook",
-                            component:OtherEbooks
+                            component:OtherEbooks,
+                            meta:{
+                                title:'其他书籍'
+                            }
                         },
                         {
                             name:'AddBookView',
                             path:'/resource/ebooks/addBookView',
-                            component:AddBookView
+                            component:AddBookView,
+                            meta:{
+                                title:'添加书籍'
+                            }
                         },
                         {
                             name:'note',
                             path:'/note',
-                            component:Note
+                            component:Note,
+                            meta:{
+                                title:'笔记'
+                            }
                         },
                         {
                             name:'blog',
                             path:'/blog',
                             component:WriteBlog,
+                            meta:{
+                                title:'写博客'
+                            },
                             props:true
                         },
                         {
                             name:'tools',
                             path:"/resource/tools",
+                            meta:{
+                                title:'工具'
+                            },
                             component:Tools
                         },
                         {
@@ -89,13 +116,19 @@ export default new Router({
         {
             name:'login',
             path:'/login',
-            component:Login
+            component:Login,
+            meta:{
+                title:'注册/登录'
+            }
         },
         {
             name:'userInfo',
             path:'/userInfo',
             component:UserInfo,
-            props:true
+            props:true,
+            meta:{
+                title:'修改信息'
+            }
         },
         
         { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },

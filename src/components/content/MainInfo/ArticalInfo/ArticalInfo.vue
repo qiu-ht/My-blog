@@ -188,8 +188,9 @@ export default {
   height: 2050px;
   padding: 10px 30px;
   border-radius: 10px;
-  margin-left: 50px;
+  margin-left: 6%;
   position: relative;
+  max-width: 900px;
   .oneInfo {
     width: 100%;
     height: 280px;
@@ -491,6 +492,11 @@ export default {
         font-size: 14px;
       }
     }
+  }
+}
+@media screen and (min-width:1600px){
+  .mainInfo{
+    margin-left: 10%;
   }
 }
 </style>

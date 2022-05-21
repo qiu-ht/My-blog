@@ -51,7 +51,7 @@ export default {
         align-content: center;
         color: aliceblue;
         .baseInfo{
-            width: 66%;
+            width: 65%;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -59,9 +59,15 @@ export default {
             // background-color: red;
             .intro,.email,.careerTime{
                 height: 40px;
-                width: 80%;
+                width: 90%;
                 // background-color: #bfa;
                 line-height: 40px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                text-overflow: ellipsis;
+                word-break: break-all;
+                -webkit-line-clamp: 1;
+                overflow: hidden;
             }
         }
         .Qrcode{
@@ -69,8 +75,7 @@ export default {
             // background-color: red;
             position: relative;
             img{
-                width: 100px;
-                height: 100px;
+                width: 100%;
                 position: absolute;
                 top: 0;
                 bottom: 0;
@@ -85,38 +90,22 @@ export default {
         .adminstratorInfo{
             width: 100%;
             padding: 30px 0;
-            font-size: 15px;
+            font-size: 14px;
 
             .baseInfo{
-                width: 76%;
+
                 .intro,.email,.careerTime{
                     height: 35px;
-                    width: 100%;
+                    width: 90%;
                 }
-            }
-            .Qrcode{
-                width: 17%;
-                img{
-                    width: 60px;
-                    height: 60px;
-                }
-                
             }
         }
     }
     @media screen and(min-width: 1200px) and (max-width:1300px){
         .adminstratorInfo{
             .baseInfo{
-                width: 70%;
                 .intro,.email,.careerTime{
-                    width: 100%;
-                }
-            }
-            .Qrcode{
-                width: 20%;
-                img{
-                    width: 90px;
-                    height: 90px;
+                    width: 90%;
                 }
             }
         }

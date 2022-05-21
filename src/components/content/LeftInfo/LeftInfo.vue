@@ -29,9 +29,9 @@ export default {
     .leftInfo{
         // z-index: 100;
         padding-top: 40px;
-        width: 32%;
+        width: 28%;
         // height: 2000px;
-        margin-left: 4%;
+        margin-left: 6%;
         z-index: 100;
         // background-color: #bfa;
     }
@@ -48,9 +48,11 @@ export default {
             display: none;
         }
     }
-    @media only screen and (min-width:912px) and (max-width:1300px) {
+    @media only screen and (min-width:912px) and (max-width:1400px) {
         .leftInfo{
-           width: 35%;
+           width: 30%;
+           margin-left: 3%;
         }
     }
+
 </style>

@@ -81,6 +81,11 @@ export default {};
   overflow: hidden;
   
 }
+@media screen and (min-width:280px) and (max-width:912px) {
+  .container{
+    position: fixed;
+  }
+}
 .container #sky {
   height: 62.5vh;
   width: 100%;

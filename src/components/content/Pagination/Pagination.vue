@@ -87,8 +87,8 @@ export default {
             margin-right:5px;
         }
         .active{
-            background-color: #6ab8f9;
-            color: #fff;
+            background-color: #6ab8f9 !important;
+            color: #fff !important;
         }
         .restPage{
             display: inline-block;
@@ -108,7 +108,10 @@ export default {
     @media only screen and (min-width: 280px) and (max-width: 912px){
         .paging{
             .nextPageBtn,.PageBtn,.lastpPageBtn{
-                
+                &:hover{
+                    background-color: #ececec;
+                    color: #606266;
+                }
             }
             .PageBtn{
                 margin-right:5px;

@@ -33,17 +33,17 @@ export default {
         alert('我的邮箱：1910828797@qq.com,欢迎随时来骚扰^-^')
       },
       showQrcode(){
-        if(window.screen.width>767){
+        if(document.documentElement.clientWidth>767){
           this.QrcodeIsShow = true
         }
       },
       hideQrcode(){
-        if(window.screen.width>767){
+        if(document.documentElement.clientWidth>767){
           this.QrcodeIsShow = false
         }
       },
       mobileQrcode(){
-        if(window.screen.width<767){
+        if(document.documentElement.clientWidth<767){
           if(this.QrcodeIsShow===false){
             this.QrcodeIsShow = true
           }else if(this.QrcodeIsShow===true){

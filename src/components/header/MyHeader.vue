@@ -95,13 +95,13 @@ export default {
       
     },
     hideList() {
-      if (window.screen.width <= 912) {
+      if (document.documentElement.clientWidth <= 912) {
         document.querySelector('.mobileList').style.display = 'none'
       }
     },
     openEbooks() {
       this.$router.push({name:'ebooks'})
-      if(window.screen.width < 912 ){
+      if(document.documentElement.clientWidth < 912 ){
         document.documentElement.scrollTop = 0
       }else{
         document.documentElement.scrollTop = 750
@@ -113,7 +113,7 @@ export default {
     },
     openTools(){
       this.$router.push({name:'tools'})
-      if(window.screen.width < 912 ){
+      if(document.documentElement.clientWidth < 912 ){
         document.documentElement.scrollTop = 0
       }else{
         document.documentElement.scrollTop = 750
@@ -158,9 +158,9 @@ export default {
     }
   },
   mounted() {
-    if (window.screen.width > 912) {
+    if (document.documentElement.clientWidth > 912) {
       this.funcList = true;
-    } else if (window.screen.width > 280 && window.screen.width < 912) {
+    } else if (document.documentElement.clientWidth > 280 && document.documentElement.clientWidth < 912) {
       this.funcList = false;
     }
 

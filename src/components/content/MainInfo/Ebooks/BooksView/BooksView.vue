@@ -104,10 +104,7 @@ export default {
       limitBooks: 12,
       skipBooks: 0,
     };
-    const padParams = {
-      limitBooks: 20,
-      skipBooks: 0,
-    };
+
     let getbooks = (bookparams)=>{
       this.$api.ebook.getCurEBooks(this.CurBooks,bookparams).then(
         res=>{
@@ -119,23 +116,24 @@ export default {
         }
       )
     }
-    if (window.screen.width > 912 && this.CurPageIndex===1) {
+    if (document.documentElement.clientWidth > 912 && this.CurPageIndex===1) {
+      console.log(document.documentElement.clientWidth)
       getbooks(params)
-    } else if (window.screen.width <= 767 && window.screen.width >= 280 && this.CurPageIndex===1) {
+    } else if (document.documentElement.clientWidth <= 767 && document.documentElement.clientWidth >= 280 && this.CurPageIndex===1) {
       getbooks(phoneParams)
-    } else if (window.screen.width <= 912 && window.screen.width >= 767 && this.CurPageIndex===1) {
-      getbooks(padParams)
+    } else if (document.documentElement.clientWidth <= 912 && document.documentElement.clientWidth >= 767 && this.CurPageIndex===1) {
+      getbooks(params)
     }
 
     this.$api.ebook.getEBookCount(this.CurBooksCount).then(
       res=>{
         let page;
-        if (window.screen.width > 912) {
+        if (document.documentElement.clientWidth > 912) {
           page = Math.ceil(res.data.booksCount / 25);
-        } else if (window.screen.width <= 767 && window.screen.width >= 280) {
+        } else if (document.documentElement.clientWidth <= 767 && document.documentElement.clientWidth >= 280) {
           page = Math.ceil(res.data.booksCount / 12);
-        } else if (window.screen.width <= 912 && window.screen.width >= 767) {
-          page = Math.ceil(res.data.booksCount / 20);
+        } else if (document.documentElement.clientWidth <= 912 && document.documentElement.clientWidth >= 767) {
+          page = Math.ceil(res.data.booksCount / 25);
         }
 
         this.pageCount = page
@@ -180,12 +178,12 @@ export default {
           this.changePage(1)
         }
         let limitBooks;
-        if (window.screen.width > 912 ) {
+        if (document.documentElement.clientWidth > 912 ) {
           limitBooks=25
-        } else if (window.screen.width <= 767 && window.screen.width >= 280 ) {
+        } else if (document.documentElement.clientWidth <= 767 && document.documentElement.clientWidth >= 280 ) {
           limitBooks=12
-        } else if (window.screen.width <= 912 && window.screen.width >= 767) {
-          limitBooks=20
+        } else if (document.documentElement.clientWidth <= 912 && document.documentElement.clientWidth >= 767) {
+          limitBooks=25
         }
         const params = {
           keyword:this.keyword,
@@ -246,22 +244,22 @@ export default {
       this.loading=true
       
       let params;
-      if (window.screen.width > 912) {
+      if (document.documentElement.clientWidth > 912) {
         params = {
           limitBooks: 25,
           skipBooks: (CurPageIndex-1)*25,
         };
         document.documentElement.scrollTop=500
-      } else if (window.screen.width <= 767 && window.screen.width >= 280) {
+      } else if (document.documentElement.clientWidth <= 767 && document.documentElement.clientWidth >= 280) {
         params = {
           limitBooks: 12,
           skipBooks:  (CurPageIndex-1)*12,
         };
         document.documentElement.scrollTop=0
-      } else if (window.screen.width <= 912 && window.screen.width >= 767) {
+      } else if (document.documentElement.clientWidth <= 912 && document.documentElement.clientWidth > 767) {
         params = {
-          limitBooks: 20,
-          skipBooks: (CurPageIndex-1)*20,
+          limitBooks: 25,
+          skipBooks: (CurPageIndex-1)*25,
         };
         document.documentElement.scrollTop=0
       }
@@ -497,9 +495,31 @@ export default {
   }
 }
 
-
-
-@media only screen and (min-width: 280px) and (max-width: 912px) {
+@media screen and (min-width: 912px) and (max-width: 1100px) {
+  .bookpage{
+    height: 1200px;
+    .frontend {
+      .books {
+        .eachbook{
+          .frontendbookimg{
+            width: 90%;
+            height: 120px;
+          }
+          span{
+            width: 90%;
+          }
+        }
+        
+      }
+    }
+  }
+}
+@media screen and (min-width: 767px) and (max-width: 912px)  {
+  .bookpage{
+    margin-top: 100px;
+  }
+}
+@media screen and (min-width: 280px) and (max-width: 767px) {
   .bookpage{
     width: 95%;
     height: 1100px;

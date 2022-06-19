@@ -30,7 +30,7 @@ export default {
   mounted() {
     if(this.$store.state.openQrcode){
       this.$nextTick(()=>{
-        document.querySelector('.cover').style.height = document.documentElement.clientHeight
+        document.querySelector('.cover').style.height = document.documentElement.scrollHeight
       })
     }
     
@@ -53,18 +53,17 @@ export default {
         }
       }
 
-      // document.body.style.minHeight = "4500px";
       window.scrollTo("0", "0");
       this.complete = true;
       
     }, 1000);
-    if (window.screen.width > 1200) {
+    if (document.documentElement.clientWidth > 1200) {
       this.$store.state.userScreen = {
         computer: true,
         phone: false,
         ipad: false,
       };
-    } else if (window.screen.width <= 912) {
+    } else if (document.documentElement.clientWidth <= 912) {
       this.$store.state.userScreen = {
         computer: false,
         phone: true,
@@ -94,6 +93,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   z-index: 9999;
+  height: 100%;
 }
 
 body {

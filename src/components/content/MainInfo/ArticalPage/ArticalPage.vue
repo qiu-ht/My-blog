@@ -66,9 +66,9 @@ export default {
     };
   
 
-    if (window.screen.width < 912) {
+    if (document.documentElement.clientWidth < 912) {
       document.documentElement.scrollTop = 0;
-    } else if (window.screen.width > 912) {
+    } else if (document.documentElement.clientWidth > 912) {
       document.documentElement.scrollTop = 500;
     }
   },

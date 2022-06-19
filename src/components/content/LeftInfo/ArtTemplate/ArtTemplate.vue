@@ -171,12 +171,12 @@ export default {
     },
     mouseenter(index){
       this.CurIndex = index
-      if (window.screen.width > 767 && this.adminIsLogin === true) {
+      if (document.documentElement.clientWidth > 767 && this.adminIsLogin === true) {
         this.hover = true
       }
     },
     mouseleave(){
-      if (window.screen.width > 767 && this.adminIsLogin === true) {
+      if (document.documentElement.clientWidth > 767 && this.adminIsLogin === true) {
         this.hover = false
       }
     },

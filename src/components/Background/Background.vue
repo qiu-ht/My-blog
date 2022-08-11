@@ -15,13 +15,15 @@
           <div id="luggage-left"></div>
           <div id="luggage-left-shadow"></div>
         </div>
-        <div id="sailor"></div>
-        <div id="sailor-arm-left"></div>
-        <div id="sailor-arm-right"></div>
-        <span class="sailor-eye"></span>
-        <span class="sailor-eye"></span>
-        <div id="sailor-cap"></div>
-        <div id="rim"></div>
+        <div id="sailor-container">
+          <div id="sailor"></div>
+          <div id="sailor-arm-left"></div>
+          <div id="sailor-arm-right"></div>
+          <span class="sailor-eye"></span>
+          <span class="sailor-eye"></span>
+          <div id="sailor-cap"></div>
+          <div id="rim"></div>
+        </div>
       </div>
 
       <svg
@@ -70,28 +72,37 @@
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    const userAgent = window.navigator.userAgent;
+    if (
+      userAgent.indexOf("Safari") !== -1 &&
+      userAgent.indexOf("Chrome") === -1
+    ) {
+      document.getElementById("sailor-container").style.top = "-140px";
+      document.getElementById("sailor-cap").style.top = "50px";
+    }
+  },
+};
 </script>
 
 <style scoped>
 .container {
-  position: absolute;
+  position: relative;
   background: #6ab8f9;
   width: 100%;
   overflow: hidden;
-  
 }
-@media screen and (min-width:280px) and (max-width:912px) {
-  .container{
+@media screen and (min-width: 280px) and (max-width: 912px) {
+  .container {
     position: fixed;
   }
 }
 .container #sky {
-  height: 62.5vh;
+  height: 25vh;
   width: 100%;
   margin: 0;
   padding: 0;
-  
 }
 .container #sky .cloud {
   margin: auto;
@@ -133,7 +144,9 @@ export default {};
   background-color: white;
 }
 .container #ocean #boat-container {
+  position: relative;
   animation: boatsway 3s ease-in-out infinite alternate;
+  top: 190px;
 }
 @keyframes boatsway {
   from {
@@ -145,12 +158,12 @@ export default {};
 }
 .container #ocean #boat-container #boat {
   margin: auto;
-  position: absolute;
+  position: relative;
   bottom: 0;
   left: 0;
   top: 0;
   right: 0;
-  top: 45px;
+  top: 65px;
   width: 400px;
   height: 100px;
   background-color: #225cee;
@@ -314,7 +327,7 @@ export default {};
   height: 70px;
   border-radius: 1rem;
   background-color: #b8ecfd;
-  opaciy: 0.7;
+  opacity: 0.7;
   transform: translateZ(-1px);
 }
 .container #ocean #boat-container #boat #luggage-left::before {
@@ -336,6 +349,18 @@ export default {};
   background-color: #fadd5f;
   border-radius: 1rem;
 }
+.container #ocean #boat-container #sailor-container {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  margin: auto;
+  top: -130px;
+  left: -60px;
+  width: 100px;
+  height: 200px;
+}
 .container #ocean #boat-container #sailor {
   margin: auto;
   position: absolute;
@@ -343,7 +368,7 @@ export default {};
   left: 0;
   top: 0;
   right: 0;
-  top: -165px;
+  top: -100px;
   height: 110px;
   width: 97.5px;
   right: 115px;
@@ -370,8 +395,8 @@ export default {};
   left: 0;
   top: 0;
   right: 0;
-  left: -65.5px;
-  top: -70px;
+  left: 40px;
+  top: -20px;
   height: 55px;
   width: 30px;
   background-color: #ec4e2f;
@@ -386,8 +411,8 @@ export default {};
   left: 0;
   top: 0;
   right: 0;
-  left: -235.5px;
-  top: -145px;
+  left: -140px;
+  top: -100px;
   height: 30px;
   width: 65px;
   background-color: #ec4e2f;
@@ -412,8 +437,8 @@ export default {};
   left: 0;
   top: 0;
   right: 0;
-  left: -162.5px;
-  bottom: 180px;
+  left: -50px;
+  bottom: 120px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -421,7 +446,7 @@ export default {};
   z-index: 7;
 }
 .container #ocean #boat-container .sailor-eye:nth-of-type(2) {
-  left: -87.5px;
+  left: 30px;
 }
 .container #ocean #boat-container .sailor-eye::before {
   content: "";
@@ -440,8 +465,8 @@ export default {};
   left: 0;
   top: 0;
   right: 0;
-  bottom: 255px;
-  right: 80px;
+  bottom: 240px;
+  left: 30px;
   height: 50px;
   width: 37.5px;
   border-top-left-radius: 12.5px;

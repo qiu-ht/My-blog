@@ -1,11 +1,11 @@
 <template>
   <div id="app" v-show="complete" >
     <Background/>
-    <div v-if="this.$store.state.openQrcode" class="cover" @mousewheel.prevent @touchmove.prevent></div>
+    <!-- <div v-if="this.$store.state.openQrcode" class="cover" @mousewheel.prevent @touchmove.prevent></div>
     <MyHeader/>
     <router-view></router-view>
     <MyFooter/>
-    <Qrcode />
+    <Qrcode /> -->
   </div>
 </template>
 

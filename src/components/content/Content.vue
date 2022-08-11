@@ -1,14 +1,11 @@
 <template>
   <div class="content">
-    <!-- <LeftInfo/> -->
     <router-view name="leftInfo"></router-view>
     <router-view name="mainInfo"></router-view>
-    <!-- <RightInfo/> -->
   </div>
 </template>
 
 <script>
-// import RightInfo from './rightInfo/RightInfo.vue'
 export default {
     data() {
         return {
@@ -28,7 +25,7 @@ export default {
     // background-color: red;
     display: flex;
     justify-content: center;
-    padding-top: 100vh;
+    margin-top: 200px;
   }
   .messageBoard{
     height: 1000px;

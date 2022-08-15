@@ -70,7 +70,7 @@ export default {
             background-color:#ececec;
             // opacity: 0.4;
             border-radius: 5px;
-            // box-shadow: 0 0px 3px rgb(119, 119, 119);
+            box-shadow: 0 0px 3px rgb(119, 119, 119);
             text-align: center;
             line-height: 30px;
             margin-top: 10px;

@@ -215,7 +215,6 @@ export default {
         height: 200px;
         position: relative;
         margin:0 auto;
-        top: 200px;
         margin-bottom: calc(~"100vh - 300px");
         box-shadow: 0 0 2px black;
          .avatar-uploader .el-upload {

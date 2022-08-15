@@ -22,10 +22,8 @@ export default {
 <style scoped lang="less">
   .content{
     width: 100%;
-    // background-color: red;
     display: flex;
     justify-content: center;
-    margin-top: 200px;
   }
   .messageBoard{
     height: 1000px;

@@ -130,9 +130,6 @@ export default {
             color: #fff;
           }
         }
-        
-        
-
     }
     .loginpageStyle{
       position: fixed;

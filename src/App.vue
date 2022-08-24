@@ -75,10 +75,8 @@ export default {
   updated() {
     if (this.$store.state.openQrcode) {
       document.querySelector(".cover").style.height =
-        document.documentElement.clientHeight + "px";
+        document.documentElement.scrollHeight + "px";
     }
-
-    
   },
 };
 </script>

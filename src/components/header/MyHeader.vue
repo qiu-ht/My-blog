@@ -1,59 +1,80 @@
 <template>
   <div class="header">
-    <div :class="showOrHide?'nav':'nav navhide'" ref="nav" >
+    <div :class="showOrHide ? 'nav' : 'nav navhide'" ref="nav">
       <span class="qiu" ref="qiu">QIU</span>
 
-        <div
-          :class="this.$store.state.user.administrator?'mobileList':'mobileList userMobileList'"
-          @click="hideList"
+      <div
+        :class="
+          this.$store.state.user.administrator
+            ? 'mobileList'
+            : 'mobileList userMobileList'
+        "
+        @click="hideList"
+      >
+        <a class="home" href="/">首页</a>
+        <span
+          class="note"
+          v-if="!this.$store.state.userScreen.computer"
+          @click="toNote"
         >
-          
-          <a class="home" href="/">首页</a>
-          <span class="note" v-if="!this.$store.state.userScreen.computer" @click="toNote"> 笔记 </span>
-          <span
-            class="ebook"
-            :to="{ name: 'ebooks' }"
-            @click="openEbooks"
-            >电子书</span
-          >
-          <span
-            class="blog"
-            v-if="this.$store.state.user.administrator"
-            @click="toBlog"
-          >
-            写博客
-          </span>
-          <span
-            class="resource"
-            :to="{ name: 'ebooks' }"
-            @click="openTools"
-            >工具</span
-          >
-          
-        </div>
-        
-        <el-dropdown trigger="click" placement="bottom" class="portrait" @command="handleCommand">
-        
-        <el-avatar :size="35" :src="this.$store.state.user.avatar?this.$store.state.user.avatar:'/image/icon/avatar.png'" class="el-dropdown-link"></el-avatar>
-        
-        <el-dropdown-menu slot="dropdown" >
+          笔记
+        </span>
+        <span class="ebook" :to="{ name: 'ebooks' }" @click="openEbooks"
+          >电子书</span
+        >
+        <span
+          class="blog"
+          v-if="this.$store.state.user.administrator"
+          @click="toBlog"
+        >
+          写博客
+        </span>
+        <span class="resource" :to="{ name: 'ebooks' }" @click="openTools"
+          >工具</span
+        >
+      </div>
 
-            <el-dropdown-item command='showLoginpage' v-if="!userLogin">注册/登录</el-dropdown-item>
+      <el-dropdown
+        trigger="click"
+        placement="bottom"
+        class="portrait"
+        @command="handleCommand"
+      >
+        <el-avatar
+          :size="35"
+          :src="
+            this.$store.state.user.avatar
+              ? this.$store.state.user.avatar
+              : '/image/icon/avatar.png'
+          "
+          class="el-dropdown-link"
+        ></el-avatar>
 
-            <div v-if="userLogin" >
-              <el-dropdown-item command='username' v-if="!this.$store.state.user.administrator">用户：{{this.$store.state.user.username}}</el-dropdown-item>
-              <el-dropdown-item command='username' v-if="this.$store.state.user.administrator">管理员：{{this.$store.state.user.username}}</el-dropdown-item>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item command="showLoginpage" v-if="!userLogin"
+            >注册/登录</el-dropdown-item
+          >
 
-              <el-dropdown-item command='userCenter'>修改资料</el-dropdown-item>
-              
-              <el-dropdown-item command="quitLogin">退出登录</el-dropdown-item>
-            </div>
-            
-            
+          <div v-if="userLogin">
+            <el-dropdown-item
+              command="username"
+              v-if="!this.$store.state.user.administrator"
+              >用户：{{ this.$store.state.user.username }}</el-dropdown-item
+            >
+            <el-dropdown-item
+              command="username"
+              v-if="this.$store.state.user.administrator"
+              >管理员：{{ this.$store.state.user.username }}</el-dropdown-item
+            >
+
+            <el-dropdown-item command="userCenter">修改资料</el-dropdown-item>
+
+            <el-dropdown-item command="quitLogin">退出登录</el-dropdown-item>
+          </div>
         </el-dropdown-menu>
-        </el-dropdown>
+      </el-dropdown>
 
-        <i class="iconfont icon-liebiao_o listimg" @click="showlist"></i>
+      <i class="iconfont icon-liebiao_o listimg" @click="showlist"></i>
     </div>
   </div>
 </template>
@@ -69,146 +90,142 @@ export default {
   },
   methods: {
     navState() {
-
       if (this.scroll > document.documentElement.scrollTop) {
         // 往上滑
-          this.showOrHide = true;
+        this.showOrHide = true;
       } else if (this.scroll < document.documentElement.scrollTop) {
         //往下滑
         this.showOrHide = false;
       }
       this.scroll = document.documentElement.scrollTop;
-      
     },
     showUserInfo() {
       this.showOrHide = !this.showOrHide;
     },
     showlist() {
-      let mobileList = document.querySelector('.mobileList')
-      if(this.funcList){
-        this.funcList = false
-        mobileList.style.display = 'none'
-      }else{
-        this.funcList = true
-        mobileList.style.display = 'block'
+      let mobileList = document.querySelector(".mobileList");
+      if (this.funcList) {
+        this.funcList = false;
+        mobileList.style.display = "none";
+      } else {
+        this.funcList = true;
+        mobileList.style.display = "block";
       }
-      
     },
     hideList() {
       if (document.documentElement.clientWidth <= 912) {
-        document.querySelector('.mobileList').style.display = 'none'
+        document.querySelector(".mobileList").style.display = "none";
       }
     },
     openEbooks() {
-      this.$router.push({name:'ebooks'})
-      if(document.documentElement.clientWidth < 912 ){
-        document.documentElement.scrollTop = 0
-      }else{
-        document.documentElement.scrollTop = 750
+      this.$router.push({ name: "ebooks" });
+      if (document.documentElement.clientWidth < 912) {
+        document.documentElement.scrollTop = 0;
+      } else {
+        document.documentElement.scrollTop = 550;
       }
-      setTimeout(()=>{
+      setTimeout(() => {
         this.showOrHide = true;
-      },50)
-      
+      }, 50);
     },
-    openTools(){
-      this.$router.push({name:'tools'})
-      if(document.documentElement.clientWidth < 912 ){
-        document.documentElement.scrollTop = 0
-      }else{
-        document.documentElement.scrollTop = 750
+    openTools() {
+      this.$router.push({ name: "tools" });
+      if (document.documentElement.clientWidth < 912) {
+        document.documentElement.scrollTop = 0;
+      } else {
+        document.documentElement.scrollTop = 550;
       }
-      
-      setTimeout(()=>{
+
+      setTimeout(() => {
         this.showOrHide = true;
-      },50)
+      }, 50);
     },
     handleCommand(command) {
-      if(command==='quitLogin'){
-        this.$store.state.user={}
-        const expire  = new Date();
+      if (command === "quitLogin") {
+        this.$store.state.user = {};
+        const expire = new Date();
         expire.setTime(expire.getTime() - 1);
-        document.cookie="token=;expires="+expire.toGMTString()+";path=/";
-      }else if(command==='showLoginpage'){
-        this.$router.push({path:'/login'})
-        document.documentElement.scrollTop=0
-      }else if(command==='userCenter'){
-        document.documentElement.scrollTop = 0
-        this.$router.push({path:'/userInfo'})
+        document.cookie = "token=;expires=" + expire.toGMTString() + ";path=/";
+      } else if (command === "showLoginpage") {
+        this.$router.push({ path: "/login" });
+        document.documentElement.scrollTop = 0;
+      } else if (command === "userCenter") {
+        document.documentElement.scrollTop = 0;
+        this.$router.push({ path: "/userInfo" });
       }
     },
     //节流
-    throttle(func,wait){
+    throttle(func, wait) {
       let previous = 0;
-      return ()=>{
-        let now = Date.now()
-        if(now-previous>wait){
-          func(...arguments)
-          previous = now
+      return () => {
+        let now = Date.now();
+        if (now - previous > wait) {
+          func(...arguments);
+          previous = now;
         }
-      }
+      };
     },
-    toBlog(){
-      this.$router.push({path:'/blog'})
-      document.documentElement.scrollTop = 0
+    toBlog() {
+      this.$router.push({ path: "/blog" });
+      document.documentElement.scrollTop = 0;
     },
-    toNote(){
-      this.$router.push({path:'/note'})
-      document.documentElement.scrollTop = 0
-    }
+    toNote() {
+      this.$router.push({ path: "/note" });
+      document.documentElement.scrollTop = 0;
+    },
   },
   mounted() {
     if (document.documentElement.clientWidth > 912) {
       this.funcList = true;
-    } else if (document.documentElement.clientWidth > 280 && document.documentElement.clientWidth < 912) {
+    } else if (
+      document.documentElement.clientWidth > 280 &&
+      document.documentElement.clientWidth < 912
+    ) {
       this.funcList = false;
     }
 
-    window.addEventListener("scroll", this.throttle(this.navState,100));
-
+    window.addEventListener("scroll", this.throttle(this.navState, 100));
   },
-  computed:{
-    userLogin(){
-      return this.$store.state.user.username ?true:false
+  computed: {
+    userLogin() {
+      return this.$store.state.user.username ? true : false;
     },
   },
-  watch:{
-    userLogin(newval){
-      if(!newval){
-        this.$api.user.login().then(
-          res=>{
-            this.$store.state.user=res.data
-          }
-        )
+  watch: {
+    userLogin(newval) {
+      if (!newval) {
+        this.$api.user.login().then((res) => {
+          this.$store.state.user = res.data;
+        });
       }
     },
-    funcList(newval){
-      let mobileList = document.querySelector('.mobileList')
-      if(!newval){
-        if(this.$store.state.user.administrator){
-          mobileList.classList.add('mobileListClose')
-        }else{
-          mobileList.classList.add('userMobileListClose')
+    funcList(newval) {
+      let mobileList = document.querySelector(".mobileList");
+      if (!newval) {
+        if (this.$store.state.user.administrator) {
+          mobileList.classList.add("mobileListClose");
+        } else {
+          mobileList.classList.add("userMobileListClose");
         }
-      }else{
-        if(this.$store.state.user.administrator){
-          mobileList.classList.remove('mobileListClose')
-        }else{
-          mobileList.classList.remove('userMobileListClose')
+      } else {
+        if (this.$store.state.user.administrator) {
+          mobileList.classList.remove("mobileListClose");
+        } else {
+          mobileList.classList.remove("userMobileListClose");
         }
       }
-    }
+    },
   },
-  beforeDestroy(){
-    window.removeEventListener('scroll',this.throttle(this.navState,100))
-  }
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.throttle(this.navState, 100));
+  },
 };
 </script>
 
 <style scoped lang='less'>
 .el-dropdown-link {
-    cursor: pointer;
-    margin-top: 5px;
+  cursor: pointer;
+  margin-top: 5px;
 }
 
 @keyframes showFuncList {
@@ -307,21 +324,20 @@ export default {
     .listimg {
       display: none;
     }
-    .mobileList{
+    .mobileList {
       position: absolute;
-      right: 120px; 
+      right: 120px;
     }
-    .login{
+    .login {
       position: absolute;
       right: 10px;
     }
   }
-  .navhide{
+  .navhide {
     margin-top: -70px;
   }
-
 }
-.loginpageStyle{
+.loginpageStyle {
   position: fixed;
   top: 0;
 }
@@ -338,8 +354,8 @@ export default {
           color: rgb(235, 233, 233);
         }
       }
-      .navFuncList{
-          align-items: center;
+      .navFuncList {
+        align-items: center;
       }
       .mobileList {
         position: absolute;
@@ -355,7 +371,7 @@ export default {
         .blog,
         .note,
         .ebook,
-        .resource{
+        .resource {
           font-size: 15px;
           width: 70px;
           height: 35px;
@@ -373,13 +389,13 @@ export default {
           border: none;
         }
       }
-      .mobileListClose{
+      .mobileListClose {
         animation: hideFuncList 0.3s;
       }
-      .userMobileListClose{
-        animation: userHideFuncList 0.3s ;
+      .userMobileListClose {
+        animation: userHideFuncList 0.3s;
       }
-      .userMobileList{
+      .userMobileList {
         animation: userShowFuncList 0.3s;
       }
       .portrait {

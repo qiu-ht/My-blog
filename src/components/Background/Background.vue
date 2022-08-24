@@ -96,6 +96,7 @@ export default {
 @media screen and (min-width: 280px) and (max-width: 912px) {
   .container {
     position: fixed;
+    margin-top: -200px;
   }
 }
 .container #sky {

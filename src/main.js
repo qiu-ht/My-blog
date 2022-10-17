@@ -41,6 +41,8 @@ import less from 'less'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 Vue.use(mavonEditor)
+
+// 全局引入接口
 import api from './request/api/index'
 Vue.prototype.$api = api
 import store from '../store'

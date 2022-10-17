@@ -224,7 +224,7 @@ export default {
 };
 </script>
 
-<style lang='less' scope>
+<style lang='less' >
 .login {
   width: 400px;
   height: 200px;

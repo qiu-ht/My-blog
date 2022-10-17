@@ -82,8 +82,6 @@ export default {
             background-color: aliceblue;
             opacity: 0.6;
             color: black;
-            // box-shadow: 0 0 5px black;
-            // border-bottom: 1px solid #80b1e9;
             border-top: 1px solid #80b1e9;
             font-size: 16px;
             padding: 5px 10px;
@@ -97,7 +95,6 @@ export default {
                     transition: 0.2s;
                     text-shadow: 0 0 2px black;  
                 }
-                
             }
             
             .articalTitle{
@@ -108,7 +105,6 @@ export default {
                 -webkit-line-clamp: 1;
                 text-overflow: ellipsis;
                 overflow: hidden; 
-                // background-color: red;
             }
             .publishDate{
                 margin-top: 5px;

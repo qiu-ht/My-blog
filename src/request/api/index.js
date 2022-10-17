@@ -5,6 +5,7 @@ import note from './note'
 import resource from './resource'
 import ebook from './ebook'
 import file from './file'
+import question from './question'
 export default {
-    user,artical,leaveMes,note,resource,ebook,file
+    user,artical,leaveMes,note,resource,ebook,file,question
 }

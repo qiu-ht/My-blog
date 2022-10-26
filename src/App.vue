@@ -33,7 +33,25 @@ export default {
         document.querySelector('.cover').style.height = document.documentElement.scrollHeight
       })
     }
+    // 增加浏览量
+    if(!document.cookie.slice(document.cookie.indexOf("user_state")).split(';')[0].split('=')[1]){
+      this.$api.blogData.addPageView()
+      const endDate = new Date(Date.now() + 60 * 1000)
+      document.cookie = `user_state=isViewing;expires=${endDate.toGMTString()};path=/`
+    }
     
+
+    // 增加访客数量
+    this.$api.blogData.addVisitorCount().then(
+      res => {
+        if(res.data !== "一天内多次访问算同一访客！"){
+          const dateNow = Date.now() + 24 * 3600 * 1000;
+          const date = new Date(dateNow)
+          document.cookie = `visitor_token=${res.data};Expires=${date};path=/`;
+        }
+      }
+    )
+
     if(document.cookie.indexOf('token')!==-1){
       this.$api.user.login().then(
         res=>{

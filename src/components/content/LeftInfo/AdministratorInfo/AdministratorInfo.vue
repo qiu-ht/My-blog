@@ -4,6 +4,7 @@
         <div class="careerTime">码龄：<span>{{careerTime}}</span></div>
         <div class="email">邮箱：<span>1910828797@qq.com</span></div>
         <div class="intro">简介：{{intro}}</div>
+        <div>网站浏览量：{{pageView}}</div>
     </div>
     <div class="Qrcode">
         <img src="/image/officialAccounts/myQrcode.jpg" alt="">
@@ -20,6 +21,7 @@ export default {
         return {
             intro:'一只又菜又爱玩的程序猿',
             zan:false,
+            pageView:0
         }
     },
     computed:{
@@ -31,6 +33,11 @@ export default {
             const careerTime = parseInt((b.diff(a))/(1000*3600*24))+"天"
             return careerTime
         },
+    },
+    created(){
+        this.$api.blogData.getBlogData().then(res => {
+            this.pageView = res.data.pageView
+        })
     }
 }
 </script>
@@ -57,7 +64,7 @@ export default {
             justify-content: center;
             align-content: center;
             // background-color: red;
-            .intro,.email,.careerTime{
+            div{
                 height: 40px;
                 width: 90%;
                 // background-color: #bfa;

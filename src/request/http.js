@@ -4,7 +4,9 @@ import qs from 'qs'
 
 const service = axios.create({
   baseURL: "http://taogezhenshuai.fun:3002",
-  headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+  },
   // 是否跨站点访问控制请求
   withCredentials: false,
   timeout: 30000,
@@ -17,8 +19,10 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use((config) => {
   // 让每个请求携带自定义 token
-  const start = document.cookie.indexOf('token')
-    config.headers['Authorization'] = document.cookie.slice(start).split(';')[0].split('=')[1]
+  const blog_token_start = document.cookie.indexOf('blog_token')
+  const authorization = document.cookie.slice(blog_token_start).split(';')[0].split('=')[1] 
+
+  config.headers['Authorization'] = authorization
   return config
 }, (error) => {
   // 错误抛到业务代码
@@ -35,7 +39,9 @@ service.interceptors.response.use((response) => {
     // 处理http错误，抛到业务代码
     msg = showStatus(status)
     if (typeof response.data === 'string') {
-      response.data = {msg}
+      response.data = {
+        msg
+      }
     } else {
       response.data.msg = msg
     }

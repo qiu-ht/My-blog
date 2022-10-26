@@ -144,7 +144,7 @@ export default {
             });
             const dateNow = Date.now() + 7 * 24 * 3600 * 1000;
             const date = new Date(dateNow)
-            document.cookie = `blog_token=${res.data.token};Expires=${date};path=/`;
+            document.cookie = `blog_token=${res.data.token};Expires=${date.toGMTString()};path=/`;
             this.$store.state.user = res.data;
             callback();
           } else {

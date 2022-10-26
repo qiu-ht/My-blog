@@ -143,9 +143,9 @@ export default {
     handleCommand(command) {
       if (command === "quitLogin") {
         this.$store.state.user = {};
-        const expire = new Date();
-        expire.setTime(expire.getTime() - 1);
-        document.cookie = "token=;expires=" + expire.toGMTString() + ";path=/";
+        const expire = Date.now() - 1;
+        const date = new Date(expire)
+        document.cookie = "blog_token=;expires=" + date.toGMTString() + ";path=/";
       } else if (command === "showLoginpage") {
         this.$router.push({ path: "/login" });
         document.documentElement.scrollTop = 0;

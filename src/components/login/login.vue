@@ -142,8 +142,9 @@ export default {
               message: "登录成功！",
               type: "success",
             });
-            var date = Date.now() + 7 * 24 * 3600 * 1000;
-            document.cookie = `token=${res.data.token};expires=${date};path=/`;
+            const dateNow = Date.now() + 7 * 24 * 3600 * 1000;
+            const date = new Date(dateNow)
+            document.cookie = `blog_token=${res.data.token};Expires=${date};path=/`;
             this.$store.state.user = res.data;
             callback();
           } else {

@@ -168,9 +168,11 @@ body {
 
 .el-divider{
   background-color: #a8dff5 !important;
+  
 }
-.el-divider__text.is-left{
+.el-divider__text.is-left,.el-divider__text.is-center,.el-divider__text.is-right{
   background-color: #a6e3fc;
+  color: #fff ;
 }
 .submitReply{
   padding: 0 !important;
@@ -181,6 +183,7 @@ body {
 .el-button{
   background-color: #6bcff7 !important;
   border: none !important;
+  color: #fff !important;
   &:hover{
     background-color: #31c5ff !important;
   }

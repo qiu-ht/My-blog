@@ -1,16 +1,32 @@
 <template>
-  <div :class="loading?'artical loadingStyle':'artical'" ref="artical" >
+  <div :class="loading ? 'artical loadingStyle' : 'artical'" ref="artical">
     <center>
       <h1 class="blogtitle">{{ $route.query.blogTitle }}</h1>
-      <h5 v-if="!loading">{{publishDate }}</h5>
+      <h5 v-if="!loading">{{ publishDate }}</h5>
     </center>
     <div v-if="loading" class="loading">Loading...</div>
-    <button @click="fullScreen" class="fullScreenBtn" v-show="!isfullScreen" v-if="!loading">
+    <button
+      @click="fullScreen"
+      class="fullScreenBtn"
+      v-show="!isfullScreen"
+      v-if="!loading"
+    >
       舒适模式
     </button>
-    <button v-show="isfullScreen" class="quitfullScreenBtn" @click="quitScreen" v-if="!loading">
+    <button
+      v-show="isfullScreen"
+      class="quitfullScreenBtn"
+      @click="quitScreen"
+      v-if="!loading"
+    >
       退出全屏
     </button>
+    <div class="catalogue" @click="toWhichTitle" ref="catalogue" v-show="showCatalogue">
+
+    </div>
+    <el-divider content-position="center" v-if="!loading && showCatalogue"
+      >正文</el-divider
+    > 
     <mavon-editor
       v-if="!loading"
       class="md context markdown-body"
@@ -24,37 +40,44 @@
       :boxShadow="false"
     ></mavon-editor>
 
-    <el-divider content-position="left" v-if="!loading" class="divider">发表留言</el-divider>
-    <SubmitMes v-if="!loading" :blogTitle="this.$route.query.blogTitle"/>
+    <el-divider content-position="left" v-if="!loading" class="divider"
+      >发表留言</el-divider
+    >
+    <SubmitMes v-if="!loading" :blogTitle="this.$route.query.blogTitle" />
 
-    <LeaveMes v-if="!loading" :blogTitle="this.$route.query.blogTitle"/>
+    <LeaveMes v-if="!loading" :blogTitle="this.$route.query.blogTitle" />
   </div>
 </template>
 
 <script>
-import LeaveMes from './LeaveMes/LeaveMes.vue'
-import SubmitMes from './SubmitMes/SubmitMes.vue'
+import LeaveMes from "./LeaveMes/LeaveMes.vue";
+import SubmitMes from "./SubmitMes/SubmitMes.vue";
 export default {
-  components:{LeaveMes,SubmitMes},
+  components: { LeaveMes, SubmitMes },
   data() {
     return {
       isfullScreen: false,
-      articalPageshow:false,
-      loading:false,
-      blogContent:'',
-      publishDate:'',
+      articalPageshow: false,
+      loading: false,
+      blogContent: "",
+      publishDate: "",
+      catalogue: [],
+      cataloguePosition: [],
+      showCatalogue:false
     };
   },
-  created(){
+  created() {
     this.$watch(
       () => this.$route.query,
       () => {
-        this.fetchData()
+        
+        this.fetchData();
+        
       },
       // 组件创建完后获取数据，
       // 此时 data 已经被 observed 了
       { immediate: true }
-    )
+    );
   },
   mounted() {
     let that = this;
@@ -64,7 +87,6 @@ export default {
         that.isfullScreen = false;
       }
     };
-  
 
     if (document.documentElement.clientWidth < 912) {
       document.documentElement.scrollTop = 0;
@@ -84,23 +106,84 @@ export default {
     },
   },
   methods: {
-    async fetchData(){
-      this.loading = true
-      if(this.$route.query.type==='artical'){
-        const res = await this.$api.artical.getOneArtical({blogTitle:this.$route.query.blogTitle})
-        this.$api.artical.addarticalView({id:res.data._id})
-        console.log(res.data.publishDate);
-        this.publishDate = res.data.publishDate.slice(0,10)
-        this.blogContent = res.data.blogContent
-        this.loading = false
-      }else if(this.$route.query.type==='note'){
-        const res = await this.$api.note.getOneNote({blogTitle:this.$route.query.blogTitle})
-        
-        this.publishDate = res.data.publishDate.slice(0,10)
-        this.blogContent = res.data.blogContent
-        this.loading = false
+    async fetchData() {
+      this.loading = true;
+      if (this.$route.query.type === "artical") {
+        const res = await this.$api.artical.getOneArtical({
+          blogTitle: this.$route.query.blogTitle,
+        });
+        this.$api.artical.addarticalView({ id: res.data._id });
+
+        this.publishDate = res.data.publishDate.slice(0, 10);
+        this.blogContent = res.data.blogContent;
+        this.loading = false;
+      } else if (this.$route.query.type === "note") {
+        const res = await this.$api.note.getOneNote({
+          blogTitle: this.$route.query.blogTitle,
+        });
+
+        this.publishDate = res.data.publishDate.slice(0, 10);
+        this.blogContent = res.data.blogContent;
+        this.loading = false;
       }
-      
+      this.showCatalogue = false
+      this.$nextTick(() => {
+        const catalogueEle = document.querySelector(".catalogue");
+        const position = sessionStorage.getItem(this.$route.query.blogTitle)
+        catalogueEle.innerHTML = "";
+        this.cataloguePosition = position ? JSON.parse(position) : []
+        this.catalogue = document.querySelectorAll(
+          `.v-show-content h1,
+            .v-show-content h2,
+            .v-show-content h3,
+            .v-show-content h4,
+            .v-show-content h5,
+            .v-show-content h6`
+        );
+        if(this.catalogue.length){
+          this.showCatalogue = true
+        }
+        const fragment = document.createDocumentFragment();
+        const title = document.createElement("h1")
+        title.style.textAlign = "center"
+        title.innerHTML = "目录"
+        fragment.appendChild(title)
+        let index = 0
+        
+        for (let v of this.catalogue) {
+          if(!position){
+            this.cataloguePosition.push(v.offsetTop)
+          }
+
+          const ele = document.createElement(v.tagName);
+          const br = document.createElement("br")
+          
+          const reg = /<(\/)?a[\s\n\r\w\d_:="-.?/]*>/g
+          
+          ele.innerHTML = v.innerHTML.replaceAll(reg,"");
+
+          ele.style.cssText = `
+            cursor:pointer;
+            display:inline-block;
+            margin:0;
+          `
+          ele.setAttribute("id",index++ )
+
+          ele.addEventListener("mouseenter",()=>{
+            ele.style.color = "rgb(100, 176, 242)"
+          })
+          ele.addEventListener("mouseleave",()=>{
+            ele.style.color = "skyblue"
+          })
+          
+          fragment.appendChild(ele);
+          fragment.appendChild(br)
+        }
+        sessionStorage.setItem(this.$route.query.blogTitle,JSON.stringify(this.cataloguePosition))
+
+        catalogueEle.appendChild(fragment);
+
+      });
     },
     fullScreen() {
       this.toFullScreen(this.$refs.artical);
@@ -155,8 +238,15 @@ export default {
       }
       return isFull;
     },
-    
-  },
+    toWhichTitle(e){
+      const contentOffsetTop = document.querySelector(".content").offsetTop
+      const catalogueHeight = this.$refs.catalogue.clientHeight
+      if(e.target.id){
+        document.documentElement.scrollTop = this.cataloguePosition[e.target.id] + contentOffsetTop + catalogueHeight
+      }
+      
+    }
+  }
 };
 </script>
 
@@ -177,7 +267,7 @@ export default {
   position: relative;
   overflow: auto;
   z-index: 999;
-  .loading{
+  .loading {
     font-size: 30px;
     position: absolute;
     text-align: center;
@@ -191,6 +281,11 @@ export default {
   .context {
     background-color: transparent;
     line-height: 30px;
+  }
+  .catalogue {
+    color: skyblue;
+    line-height: 25px;
+    padding: 0 25px;
   }
   .fullScreenBtn,
   .quitfullScreenBtn {
@@ -220,11 +315,11 @@ export default {
     z-index: 99999;
   }
 }
-.loadingStyle{
+.loadingStyle {
   height: 1000px;
   width: 90%;
 }
-.divider{
+.divider {
   margin-top: 100px;
   margin-bottom: 40px;
 }
@@ -236,13 +331,12 @@ export default {
     padding: 25px 14px;
     font-size: 14px;
     line-height: 25px;
-    .loading{
+    .loading {
       line-height: 50px;
-      width: 90%; 
+      width: 90%;
     }
     .blogtitle {
       font-size: 20px;
-      
     }
     .context {
       top: 30px;
@@ -254,11 +348,10 @@ export default {
     }
   }
 }
-@media screen and (min-width:280px) and (max-width:350px) {
-  
+@media screen and (min-width: 280px) and (max-width: 350px) {
 }
-@media only screen and (min-width: 912px) and (max-width: 1400px){
-  .artical{
+@media only screen and (min-width: 912px) and (max-width: 1400px) {
+  .artical {
     width: 90%;
     font-size: 15px;
   }

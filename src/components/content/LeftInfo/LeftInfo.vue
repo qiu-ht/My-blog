@@ -27,9 +27,8 @@ export default {
 <style scoped lang='less'>
     
     .leftInfo{
-        padding-top: 40px;
-        width: 28%;
-        margin-left: 3%;
+        padding: 40px 2rem 0;
+        width: 28vw;
         z-index: 100;
     }
     @media only screen and (min-width: 280px) and (max-width: 912px) {
@@ -47,8 +46,29 @@ export default {
     }
     @media only screen and (min-width:912px) and (max-width:1400px) {
         .leftInfo{
-           width: 30%;
+           width: 30vw;
+           padding: 40px 0 0 2rem;
         }
     }
-
+    @media screen and (min-width:1200px) and (max-width:1400px) {
+        .leftInfo{
+            width: 28vw;
+        }
+    }
+    @media screen and (min-width: 1600px) {
+        .leftInfo{
+            width: 25vw;
+            padding: 40px 4rem 0;
+        }
+    }
+    @media screen and (min-width: 2600px) {
+        .leftInfo{
+            width: 23vw;
+        }
+    }
+    @media screen and (min-width: 4400px) {
+        .leftInfo{
+            width: 20vw;
+        }
+    }
 </style>

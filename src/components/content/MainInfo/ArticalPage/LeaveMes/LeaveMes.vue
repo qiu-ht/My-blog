@@ -487,7 +487,7 @@ export default {
     display: flex;
     justify-content: center;
     // padding-bottom: 10px;
-    padding:10px 5% 0;
+    padding:10px 20px 0;
     position: relative;
     .avatar {
       width: 25px;

@@ -35,8 +35,8 @@ export default {
   methods: {
     contactMe() {
       this.$router.push({
-        name: 'contactMe',
-      })
+        name: "contactMe",
+      });
     },
     showQrcode() {
       if (document.documentElement.clientWidth > 767) {
@@ -165,6 +165,33 @@ export default {
           margin-top: -1px;
         }
       }
+    }
+  }
+}
+@media screen and (min-width: 1600px) {
+  .myfooter {
+    height: 7rem;
+    font-size: 1.2rem;
+    .contactMe{
+      margin: 1.5rem 4rem 1rem;
+    }
+  }
+}
+@media screen and (min-width: 3000px) {
+  .myfooter {
+    height: 9rem;
+    font-size: 1.4rem;
+    .contactMe{
+      margin: 2rem 6rem 1.5rem;
+    }
+  }
+}
+@media screen and (min-width: 4000px) {
+  .myfooter {
+    height: 10rem;
+    font-size: 1.6rem;
+    .contactMe{
+      margin: 2rem 8rem 1.8rem;
     }
   }
 }

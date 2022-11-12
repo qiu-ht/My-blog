@@ -40,15 +40,14 @@
         class="portrait"
         @command="handleCommand"
       >
-        <el-avatar
-          :size="35"
+        <img
           :src="
             this.$store.state.user.avatar
               ? this.$store.state.user.avatar
               : '/image/icon/avatar.png'
           "
           class="el-dropdown-link"
-        ></el-avatar>
+        />
 
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item command="showLoginpage" v-if="!userLogin"
@@ -144,8 +143,9 @@ export default {
       if (command === "quitLogin") {
         this.$store.state.user = {};
         const expire = Date.now() - 1;
-        const date = new Date(expire)
-        document.cookie = "blog_token=;expires=" + date.toGMTString() + ";path=/";
+        const date = new Date(expire);
+        document.cookie =
+          "blog_token=;expires=" + date.toGMTString() + ";path=/";
       } else if (command === "showLoginpage") {
         this.$router.push({ path: "/login" });
         document.documentElement.scrollTop = 0;
@@ -226,6 +226,9 @@ export default {
 .el-dropdown-link {
   cursor: pointer;
   margin-top: 5px;
+  border-radius: 50%;
+  width: 2vw;
+  box-shadow: 0 0 3px #fff;
 }
 
 @keyframes showFuncList {
@@ -261,11 +264,14 @@ export default {
   }
 }
 .header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
   .nav {
+    width: 100%;
     margin-top: 0;
     z-index: 2000;
-    width: 100%;
-    height: 70px;
+    height: 3.8vw;
     background-color: #6ab8f9;
     position: fixed;
     top: 0;
@@ -288,14 +294,14 @@ export default {
     }
     .qiu {
       opacity: 0.7;
-      margin-left: 162px;
-      font-size: 40px;
+      font-size: 2vw;
       font-weight: 600;
       letter-spacing: 3px;
       cursor: pointer;
       font-family: "微软雅黑";
       user-select: none;
       transition: 0.3s;
+      padding-left: calc(~"6vw - 2rem");
       &:hover {
         opacity: 0.9;
       }
@@ -309,24 +315,33 @@ export default {
       text-decoration: none;
       color: rgb(235, 233, 233);
       opacity: 0.7;
-      font-size: 20px;
+      font-size: 1.4vw;
       cursor: pointer;
-      margin-right: 40px;
+      margin-right: 2vw;
+    }
+    .resource {
+      margin-right: 4vw;
     }
 
     .portrait {
       position: absolute;
       cursor: pointer;
-      width: 40px;
+      width: 2vw;
       border-radius: 50%;
-      right: 60px;
+      right: calc(~"6vw - 2rem");
+      // background-color: red;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
     .listimg {
       display: none;
     }
     .mobileList {
       position: absolute;
-      right: 120px;
+      right: 0;
+      margin-right: calc(~"7vw - 2rem");
     }
     .login {
       position: absolute;
@@ -334,7 +349,7 @@ export default {
     }
   }
   .navhide {
-    margin-top: -70px;
+    margin-top: -3.8vw;
   }
 }
 .loginpageStyle {
@@ -367,27 +382,27 @@ export default {
         animation: showFuncList 0.3s;
         overflow: hidden;
         display: none;
-        .home,
-        .blog,
-        .note,
-        .ebook,
-        .resource {
-          font-size: 15px;
-          width: 70px;
-          height: 35px;
-          text-align: center;
-          display: inline-block;
-          border-bottom: 1px solid rgb(226, 226, 226);
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          align-items: center;
-          margin: 0 auto;
-          opacity: 1;
-        }
-        .resource {
-          border: none;
-        }
+      }
+      .home,
+      .blog,
+      .note,
+      .ebook,
+      .resource {
+        font-size: 15px;
+        width: 70px;
+        height: 35px;
+        text-align: center;
+        display: inline-block;
+        border-bottom: 1px solid rgb(226, 226, 226);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        opacity: 1;
+      }
+      .resource {
+        border: none;
       }
       .mobileListClose {
         animation: hideFuncList 0.3s;
@@ -399,11 +414,11 @@ export default {
         animation: userShowFuncList 0.3s;
       }
       .portrait {
-        width: 40px;
+        width: 35px;
         border-radius: 50%;
         right: 60px;
         &:hover {
-          width: 40px;
+          width: 35px;
           margin-bottom: 0px;
           box-shadow: none;
         }
@@ -416,11 +431,132 @@ export default {
         right: 20px;
       }
     }
+    .navhide {
+      margin-top: -50px;
+    }
 
     .userInfo {
       width: 220px;
       height: 160px;
       background-color: rgba(27, 27, 27, 0.6);
+    }
+  }
+}
+@media screen and (min-width: 912px) and (max-width: 1300px) {
+  .header {
+    .nav {
+      height: 4.5vw;
+      .qiu {
+        font-size: 2.5vw;
+      }
+      .home,
+      .blog,
+      .note,
+      .ebook,
+      .login,
+      .resource {
+        font-size: 1.6vw;
+        margin-right: 2.2vw;
+      }
+      .resource{
+        margin-right: 5vw;
+      }
+      .portrait{
+        width: 2.5vw;
+      }
+    }
+  }
+}
+@media screen and (min-width: 912px) and (max-width: 1050px) {
+  .header {
+    .nav {
+      height: 5vw;
+      .qiu {
+        font-size: 3vw;
+      }
+      .home,
+      .blog,
+      .note,
+      .ebook,
+      .login,
+      .resource {
+        font-size: 2vw;
+        margin-right: 2.5vw;
+      }
+      .resource{
+        margin-right: 5.5vw;
+      }
+      .portrait{
+        width: 2.8vw;
+      }
+    }
+  }
+}
+@media screen and (min-width: 1600px) {
+  .header {
+    .nav {
+      .qiu{
+        padding-left: calc(~"7vw - 2rem");
+      }
+      .portrait{
+        right: calc(~"6vw - 2rem");
+
+      }
+      .mobileList{
+        margin-right: calc(~"8vw - 2rem");
+      }
+    }
+  }
+}
+@media screen and (min-width: 2600px) {
+  .header {
+    .nav {
+      height: 8rem;
+      .qiu {
+        padding-left: calc(~"8.5vw - 2rem");
+        font-size: 4rem;
+      }
+      .home,
+      .blog,
+      .note,
+      .ebook,
+      .login,
+      .resource {
+        font-size: 2.5rem;
+      }
+      .portrait{
+        right: calc(~"7vw - 2rem");
+
+      }
+      .mobileList{
+        margin-right: calc(~"8vw - 2rem");
+      }
+    }
+  }
+}
+@media screen and (min-width: 4400px) {
+  .header {
+    .nav {
+      height: 10rem;
+      .qiu {
+        padding-left: calc(~"10vw - 2rem");
+        font-size: 5.5rem;
+      }
+      .home,
+      .blog,
+      .note,
+      .ebook,
+      .login,
+      .resource {
+        font-size: 3.5rem;
+      }
+      .portrait{
+        right: calc(~"9vw - 2rem");
+
+      }
+      .mobileList{
+        margin-right: calc(~"9vw - 2rem");
+      }
     }
   }
 }

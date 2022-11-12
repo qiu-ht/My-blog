@@ -293,4 +293,92 @@ export default {
     }
   }
 }
+
+@media screen and (min-width:1600px) {
+  .calendar{
+    height: 28rem;
+    margin-bottom: 2rem;  
+    .topDate{
+      height: 5rem;
+      .info{
+        span,i{
+          font-size: 1.2rem;
+        }
+      }
+    }
+    .mainInfo{
+      padding-top: 1rem;
+      height: 22rem;
+      .week{
+        font-size: 1.1rem;
+      }
+      .day{
+        .row{
+          line-height: 2.4rem;
+          .cell{
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width:2300px) {
+  .calendar{
+    height: 30rem;
+    margin-bottom: 2rem;  
+    .topDate{
+      height: 5rem;
+      .info{
+        span,i{
+          font-size: 1.4rem;
+        }
+      }
+    }
+    .mainInfo{
+      padding-top: 1rem;
+      height: 24rem;
+      .week{
+        font-size: 1.3rem;
+      }
+      .day{
+        .row{
+          line-height: 2.6rem;
+          .cell{
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width:4000px) {
+  .calendar{
+    height: 35rem;
+    margin-bottom: 2rem;  
+    .topDate{
+      height: 5rem;
+      .info{
+        span,i{
+          font-size: 2rem;
+        }
+      }
+    }
+    .mainInfo{
+      padding-top: 1rem;
+      height: 29rem;
+      .week{
+        font-size: 2rem;
+      }
+      .day{
+        .row{
+          line-height: 3.5rem;
+          .cell{
+            font-size: 1.8rem;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

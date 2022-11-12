@@ -15,7 +15,6 @@
                 @imgAdd="$imgAdd" 
                 @imgDel="$imgDel"
             />
-            
       </center>
         <span>{{tip}}</span>
       <div class="CoverImg">
@@ -140,7 +139,7 @@ export default {
             if(files && files[0]) {
                 if(this.imageSrc){
                     const url = this.imageSrc.split('url=')[1].split('&')[0]
-                    const res = await this.$api.file.deleteImage({url:url})
+                    await this.$api.file.deleteImage({url:url})
                 }
                 const res = await this.$api.file.uploadImage(files[0],'blogImage')
                 this.imageSrc = res.data.url

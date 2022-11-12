@@ -2,7 +2,7 @@
   <div :class="loading ? 'artical loadingStyle' : 'artical'" ref="artical">
     <center>
       <h1 class="blogtitle">{{ $route.query.blogTitle }}</h1>
-      <h5 v-if="!loading">{{ publishDate }}</h5>
+      <h5 v-if="!loading" class="date">{{ publishDate }}</h5>
     </center>
     <div v-if="loading" class="loading">Loading...</div>
     <button
@@ -21,7 +21,7 @@
     >
       退出全屏
     </button>
-    <div class="catalogue" @click="toWhichTitle" ref="catalogue" v-show="showCatalogue">
+    <div class="catalogue" @click="toWhichTitle" ref="catalogue" v-if="!loading && showCatalogue">
 
     </div>
     <el-divider content-position="center" v-if="!loading && showCatalogue"
@@ -255,7 +255,6 @@ export default {
   background-color: none !important;
 }
 .artical {
-  width: 90%;
   color: black;
   background-color: aliceblue;
   border-radius: 10px;
@@ -352,8 +351,53 @@ export default {
 }
 @media only screen and (min-width: 912px) and (max-width: 1400px) {
   .artical {
-    width: 90%;
     font-size: 15px;
+    // margin-left: 1rem;
+  }
+}
+@media screen and (min-width:1600px) {
+  .artical{
+    font-size: 1rem;
+    .loading{
+      font-size: 2rem;
+    }
+    .date{
+      font-size: 1.2rem;
+    }
+    .context{
+      font-size: 1.1rem;
+      line-height: 2rem;
+      letter-spacing: 1.5px;
+    }
+    .fullScreenBtn,
+  .quitfullScreenBtn{
+    font-size: 1.1rem;
+    width: 6rem;
+    height: 2.5rem;
+  }
+  }
+}
+@media screen and (min-width:3000px) {
+  .artical{
+    font-size: 1.5rem;
+    .loading{
+      font-size: 3rem;
+      // margin: 100rem auto 0;
+    }
+    .date{
+      font-size: 1.4rem;
+    }
+    .context{
+      font-size: 1.5rem;
+      line-height: 2.5rem;
+      letter-spacing: 2px;
+    }
+    .fullScreenBtn,
+  .quitfullScreenBtn{
+    font-size: 1.5rem;
+    width: 8rem;
+    height: 3rem;
+  }
   }
 }
 </style>

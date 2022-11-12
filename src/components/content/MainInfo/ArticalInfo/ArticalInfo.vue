@@ -17,16 +17,21 @@
           },
         }"
       >
-        <div class="imgBox">
-          <img :src="artical.coverImg || '/image/icon/portrait.jpg'" alt="" />
-        </div>
-        <div class="rightInfo">
+        <div class="artical-info">
           <div class="titleBox">
             {{ artical.blogTitle }}
           </div>
 
           <div class="content" @click="readoneArtical(artical)">
-            {{ artical.blogContent }}
+            <div class="imgBox">
+              <img
+                :src="artical.coverImg || '/image/icon/portrait.jpg'"
+                alt=""
+              />
+            </div>
+            <div class="content-text">
+              {{ artical.blogContent }}
+            </div>
           </div>
 
           <div class="bottom_info">
@@ -180,7 +185,7 @@ export default {
       ) {
         document.documentElement.scrollTop = 0;
       }
-      
+
       const params = {
         limit: 6,
         skip: (CurPageIndex - 1) * 6,
@@ -188,8 +193,6 @@ export default {
 
       const articals = await this.$api.artical.getArtical(params);
       this.CurArticals = articals.data;
-
-      
     },
 
     readoneArtical(artical) {
@@ -210,17 +213,13 @@ export default {
 }
 
 .mainInfo {
+  width: 100%;
   z-index: 100;
-  width: 85%;
   height: 2050px;
-  padding: 10px 30px;
+  padding: 10px 0;
   border-radius: 10px;
-  margin-left: 6%;
   position: relative;
-  max-width: 900px;
   .oneInfo {
-    width: 100%;
-    height: 280px;
     background-color: aliceblue;
     color: rgb(170, 170, 170);
     border-bottom: 1px solid #80b1e9;
@@ -228,9 +227,6 @@ export default {
     border-radius: 6px;
     position: relative;
     margin: 0 auto 40px;
-    @media screen and (min-width: 912px) {
-      margin-left: -20px;
-    }
 
     .imgBox {
       box-shadow: 0 0 5px #6ab8f9;
@@ -248,12 +244,8 @@ export default {
     }
 
     .routeBox {
-      width: 100%;
-      height: 100%;
-      font-size: 18px;
       color: rgb(73, 73, 73);
       cursor: pointer;
-      display: block;
       display: flex;
       flex-wrap: wrap;
       text-decoration: none;
@@ -263,33 +255,28 @@ export default {
         color: #4168d396;
         transition: 0.3s;
       }
-      .imgBox {
-        width: 23%;
-        height: 65%;
-        overflow: hidden;
-        img {
-          width: 100%;
-          height: 100%;
-          opacity: 0.7;
-        }
-      }
-      .rightInfo {
+      .artical-info {
         // position: relative;
-        width: 60%;
         display: flex;
+        padding: 3% 0 2% 5%;
+        // padding-left: 5%;
         flex-wrap: wrap;
-
+        flex-direction: column;
+        justify-content: left;
+        height: 100%;
+        max-width: 95%;
         .titleBox {
-          position: absolute;
-          top: 15%;
-          // left: 30%;
-          height: 25px;
-          font-size: 16px;
-          a {
-            text-decoration: none;
-          }
-          width: 50%;
-          border-bottom: 1px solid rgb(173, 173, 173);
+          // position: absolute;
+          // top: 15%;
+          font-size: 22px;
+          border-left: 10px solid #05a3ff;
+          height: 30px;
+          padding-left: 10px;
+          // width: 50%;
+          width: 80%;
+          color: #05a3ff;
+          margin-bottom: 1vw;
+          // border-bottom: 1px solid rgb(173, 173, 173);
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 1;
@@ -298,32 +285,44 @@ export default {
         }
 
         .content {
-          // position: absolute;
-          // left: 30%;
-          top: 26%;
-          position: absolute;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 4;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          width: 56%;
-          font-size: 14px;
-          margin-top: 25px;
-          margin-bottom: 30px;
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: center;
+          height: 150px;
+          max-width: 98%;
+          .imgBox {
+            width: 200px;
+            // height: 50%;
+            // height: 80%;
+            overflow: hidden;
+            margin-right: 3%;
+            height: 100%;
+            img {
+              width: 100%;
+              height: 100%;
+              opacity: 0.7;
+            }
+          }
+          .content-text {
+            flex: 1;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: 16px;
+            padding-right: 4%;
+            letter-spacing: 2px;
+            line-height: 30px;
+          }
         }
         .bottom_info {
           display: flex;
-          position: absolute;
-          // left: 30%;
-          top: 73%;
           align-items: center;
-          height: 30px;
-          width: 55%;
-          justify-content: space-between;
+          justify-content: right;
           .user {
-            color: rgb(73, 73, 73);
-            bottom: 20px;
+            color: rgb(158, 157, 157);
+            margin-right: 7%;
             cursor: pointer;
             &:hover {
               color: #05a3ff;
@@ -333,6 +332,7 @@ export default {
               width: 20px;
               border-radius: 50%;
               vertical-align: middle;
+              opacity: 0.8;
             }
             span {
               display: inline-block;
@@ -343,8 +343,8 @@ export default {
           }
           .date,
           .views {
-            color: rgb(73, 73, 73);
-            bottom: 20px;
+            color: rgb(158, 157, 157);
+            margin-right: 7%;
             i {
               font-size: 13px;
             }
@@ -399,11 +399,7 @@ export default {
     margin-bottom: 50px;
   }
   .pageturning {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    bottom: 50px;
+    margin: 50px auto;
   }
 }
 @media only screen and (min-width: 280px) and (max-width: 912px) {
@@ -428,29 +424,35 @@ export default {
       }
 
       .routeBox {
-        font-size: 14px;
-        .rightInfo {
+        .artical-info {
           width: 100%;
+          padding: 3% 4%;
+
           .titleBox {
             top: 18px;
             left: 5%;
             width: 60%;
             height: 20px;
             font-size: 14px;
+            margin-bottom: 0;
             // border: none;
           }
           .content {
-            width: 90%;
-            left: 0;
+            height: auto;
+            padding:0 10px;
+            .content-text{
+              left: 0;
             right: 0;
-            margin: 18px auto 0;
-            font-size: 14px;
+            margin: 10px auto;
             font-size: 13px;
             -webkit-line-clamp: 2;
+            line-height: 25px;
+            }
           }
           .bottom_info {
             left: 5%;
-            width: 80%;
+            width: 100%;
+            justify-content: space-evenly;
             .user {
               img {
                 width: 18px;
@@ -479,43 +481,195 @@ export default {
         display: none;
       }
     }
-    .pageturning {
-      top: 1000px;
-    }
   }
 }
 
 @media only screen and (min-width: 1100px) and (max-width: 1200px) {
   .mainInfo {
-    width: 90%;
-    margin-left: 20px;
+    // margin-left: 20px;
     .oneInfo {
-      .titleBox {
-        font-size: 17px;
-      }
-      .content {
-        font-size: 14px;
+      .routeBox {
+        .artical-info {
+          .titleBox {
+            font-size: 17px;
+          }
+          .content {
+            font-size: 14px;
+          }
+        }
       }
     }
   }
 }
 @media only screen and (min-width: 912px) and (max-width: 1100px) {
   .mainInfo {
-    width: 90%;
-    margin-left: 20px;
+    // margin-left: 20px;
     .oneInfo {
-      .titleBox {
-        font-size: 16px;
-      }
-      .content {
-        font-size: 14px;
+      .routeBox {
+        .artical-info {
+          .titleBox {
+            font-size: 16px;
+            height: 25px;
+          }
+          .content {
+            font-size: 14px;
+            .imgBox {
+              width: 20%;
+            }
+          }
+        }
       }
     }
   }
 }
-@media screen and (min-width: 1600px) {
+@media screen and (min-width: 2000px) {
   .mainInfo {
-    margin-left: 10%;
+    .oneInfo {
+      .routeBox {
+        .artical-info {
+          .titleBox {
+            font-size: 1.6rem;
+            height: 2.5rem;
+          }
+          .content {
+            font-size: 1.3rem;
+            height: 180px;
+            .imgBox{
+              width: 220px;
+            }
+            .content-text{
+              font-size: 1.3rem;
+              line-height: 2.5rem;
+            }
+          }
+          .bottom_info {
+            .user,
+            .date,
+            .views {
+              margin-right: 7%;
+              span,
+              i {
+                font-size: 1.1rem;
+              }
+              img {
+                width: 1.3rem;
+              }
+            }
+            
+          }
+        }
+      }
+    }
   }
 }
+@media screen and (min-width: 3000px) {
+  .mainInfo {
+    .oneInfo {
+      .routeBox {
+        .artical-info {
+          .titleBox {
+            font-size: 2rem;
+            height: 3rem;
+          }
+          .content {
+            font-size: 1.3rem;
+            height: 200px;
+            .imgBox{
+              width: 250px;
+            }
+            .content-text{
+              font-size: 1.5rem;
+              line-height: 2.5rem;
+            }
+          }
+          .bottom_info {
+            .user,
+            .date,
+            .views {
+              margin-right: 6%;
+              span,
+              i {
+                font-size: 1.5rem;
+              }
+              img {
+                width: 1.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 4000px) {
+  .mainInfo {
+    .oneInfo {
+      .routeBox {
+        .artical-info {
+          padding: 2% 0 1% 3%;
+          .titleBox {
+            font-size: 2.5rem;
+            height: 3.2rem;
+          }
+          .content {
+            height: 230px;
+            .imgBox{
+              width: 280px;
+            }
+            .content-text{
+              font-size: 2.2rem;
+              letter-spacing: 0.4rem;
+              line-height: 3.2rem;
+            }
+          }
+          .bottom_info {
+            margin-top: 1%;
+            .user,
+            .date,
+            .views {
+              margin-right: 6%;
+              span,
+              i {
+                font-size: 2.1rem;
+              }
+              img {
+                width: 2.2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// @media screen and (min-width: 1600px) {
+//   .mainInfo {
+//     .oneInfo {
+//       height: 400px;
+//       .routeBox {
+//         .artical-info {
+//           .titleBox {
+//             font-size: 1.5rem;
+//           }
+//           .content {
+//             font-size: 1.3rem;
+//           }
+//           .bottom_info {
+//             .user,
+//             .date,
+//             .views {
+//               span,
+//               i {
+//                 font-size: 1.1rem;
+//               }
+//               img {
+//                 width: 1.5rem;
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 </style>

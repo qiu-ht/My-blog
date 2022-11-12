@@ -109,10 +109,11 @@ export default {
 
 <style scoped lang='less'>
   .submitMes {
-    width: 100%;
+    width: calc(~"100% - 40px");
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    padding: 0 20px;
     .avatar{
       width: 50px;
       height: 50px;
@@ -123,7 +124,7 @@ export default {
 
     }
     .form{
-      width: 85%;
+      width: calc(~"100% - 50px");
 
     }
     .el-form-item{

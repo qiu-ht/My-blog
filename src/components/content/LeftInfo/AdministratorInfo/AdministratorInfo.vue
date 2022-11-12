@@ -118,4 +118,51 @@ export default {
         }
         
     }
+    @media screen and (min-width:1600px) {
+        .adminstratorInfo{
+            font-size: 1rem;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            .baseInfo{
+                div{
+                    line-height: 2.6rem;
+                    height: 2.6rem;
+                }
+            }
+        }
+    }
+    @media screen and (min-width:2300px) {
+        .adminstratorInfo{
+            font-size: 1.4rem;
+            .baseInfo{
+                div{
+                    line-height: 3.2rem;
+                    height: 3.2rem;
+                }
+            }
+        }
+    }
+    @media screen and (min-width:4000px) {
+        .adminstratorInfo{
+            font-size: 2rem;
+            padding: 3rem 0;
+            .baseInfo{
+                div{
+                    line-height: 4rem;
+                    height: 4rem;
+
+                }
+            }
+            .Qrcode{
+                width: 20%;
+            }
+        }
+    }
+    @media screen and (min-width:6000px) {
+        .adminstratorInfo{
+            .Qrcode{
+                width: 17%;
+            }
+        }
+    }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="paging pageturning" ref="paging" v-if="pageCount > 1">
-    <span @click="lastPage" class="lastpPageBtn" v-show="CurPageIndex_ !== 1"
+    <span @click="lastPage" class="lastPageBtn" v-show="CurPageIndex_ !== 1"
       >上一页</span
     >
     <span class="restPage" v-show="CurPageIndex_ > 2 && pageCount > 3"
@@ -84,25 +84,24 @@ export default {
 
 <style lang='less' scoped>
 .paging {
-  height: 30px;
+  // height: 30px;
   display: flex;
   justify-content: center;
+  align-items: center;
   font-size: 16px;
   .nextPageBtn,
   .PageBtn,
-  .lastpPageBtn {
+  .lastPageBtn {
     cursor: pointer;
     user-select: none;
     display: inline-block;
     width: 50px;
     height: 30px;
     background-color: #ececec;
-    // opacity: 0.4;
     border-radius: 5px;
     box-shadow: 0 0px 3px rgb(119, 119, 119);
     text-align: center;
     line-height: 30px;
-    margin-top: 10px;
     color: #606266;
     &:hover {
       background-color: #6ab8f9;
@@ -122,16 +121,16 @@ export default {
   .restPage {
     display: inline-block;
     width: 20px;
-    margin-top: 10px;
+    height: 30px;
     color: rgba(29, 29, 29, 0.5);
     text-align: center;
     font-weight: bold;
   }
-  .lastpPageBtn {
+  .lastPageBtn {
     margin-right: 3px;
   }
   .nextPageBtn,
-  .lastpPageBtn {
+  .lastPageBtn {
     padding: 0 5px;
   }
 }
@@ -139,7 +138,7 @@ export default {
   .paging {
     .nextPageBtn,
     .PageBtn,
-    .lastpPageBtn {
+    .lastPageBtn {
       &:hover {
         background-color: #ececec;
         color: #606266;
@@ -147,6 +146,56 @@ export default {
     }
     .PageBtn {
       margin-right: 5px;
+    }
+  }
+}
+@media screen and (min-width: 1600px) {
+  .paging{
+    font-size: 1.1rem;
+    .nextPageBtn,
+    .PageBtn,
+    .lastPageBtn{
+      width: 3.5rem;
+      height: 2.2rem;
+      line-height: 2.2rem;
+    }
+    .PageBtn{
+      width: 2.2rem;
+      margin-right: 0.7rem;
+    }
+    .restPage{
+      height: 2.2rem;
+      margin-right: 0.5rem;
+    }
+  }
+}
+@media screen and (min-width: 2300px) {
+  .paging{
+    font-size: 1.5rem;
+    .nextPageBtn,
+    .PageBtn,
+    .lastPageBtn{
+      width: 4.5rem;
+      height: 2.5rem;
+      line-height: 2.5rem;
+    }
+    .PageBtn{
+      width: 2.5rem;
+      margin-right: 0.5rem;
+    }
+    .restPage{
+      height: 2.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+}
+@media screen and (min-width: 4000px) {
+  .paging{
+    .PageBtn{
+      margin-right: 0.8rem;
+    }
+    .restPage{
+      margin-right: 0.8rem;
     }
   }
 }

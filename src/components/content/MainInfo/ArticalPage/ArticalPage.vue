@@ -113,7 +113,6 @@ export default {
       }
       const catalogueEle = document.querySelector(".catalogue");
       if (catalogueEle) {
-        console.log(catalogueEle.innerHTML);
         catalogueEle.innerHTML = "";
       }
       this.loading = true;
@@ -170,12 +169,14 @@ export default {
 
           const reg = /<(\/)?a[\s\n\r\w\d_:="-.?/]*>/g;
 
-          ele.innerHTML = v.innerHTML.replaceAll(reg, "");
+          ele.innerHTML = "- " + v.innerHTML.replaceAll(reg, "");
 
           ele.style.cssText = `
             cursor:pointer;
             display:inline-block;
             margin:0;
+            text-indent: ${v.tagName.substring(1)*1.5}rem;
+            font-size:${window.screen.width/1500}rem;
           `;
           ele.setAttribute("id", index++);
 
@@ -364,7 +365,6 @@ export default {
 @media only screen and (min-width: 912px) and (max-width: 1400px) {
   .artical {
     font-size: 15px;
-    // margin-left: 1rem;
   }
 }
 @media screen and (min-width: 1600px) {

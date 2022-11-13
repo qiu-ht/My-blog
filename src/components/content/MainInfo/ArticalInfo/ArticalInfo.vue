@@ -483,7 +483,6 @@ export default {
 
 @media only screen and (min-width: 1100px) and (max-width: 1200px) {
   .mainInfo {
-    // margin-left: 20px;
     .oneInfo {
       .routeBox {
         .artical-info {
@@ -500,7 +499,6 @@ export default {
 }
 @media only screen and (min-width: 912px) and (max-width: 1100px) {
   .mainInfo {
-    // margin-left: 20px;
     .oneInfo {
       .routeBox {
         .artical-info {
@@ -639,34 +637,4 @@ export default {
     }
   }
 }
-// @media screen and (min-width: 1600px) {
-//   .mainInfo {
-//     .oneInfo {
-//       height: 400px;
-//       .routeBox {
-//         .artical-info {
-//           .titleBox {
-//             font-size: 1.5rem;
-//           }
-//           .content {
-//             font-size: 1.3rem;
-//           }
-//           .bottom_info {
-//             .user,
-//             .date,
-//             .views {
-//               span,
-//               i {
-//                 font-size: 1.1rem;
-//               }
-//               img {
-//                 width: 1.5rem;
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
 </style>

@@ -21,10 +21,15 @@
     >
       退出全屏
     </button>
-    <div class="catalogue" @click="toWhichTitle" ref="catalogue" v-if="!loading"></div>
+    <div
+      class="catalogue"
+      @click="toWhichTitle"
+      ref="catalogue"
+      v-if="!loading && showCatalogue"
+    ></div>
     <el-divider content-position="center" v-if="!loading && showCatalogue"
       >正文</el-divider
-    > 
+    >
     <mavon-editor
       v-if="!loading"
       class="md context markdown-body"
@@ -61,15 +66,14 @@ export default {
       publishDate: "",
       catalogue: [],
       cataloguePosition: [],
-      showCatalogue:true
+      showCatalogue: true,
     };
-  }, 
+  },
   created() {
     this.$watch(
       () => this.$route.query,
       () => {
-        this.fetchData(); 
-        
+        this.fetchData();
       },
       // 组件创建完后获取数据，
       // 此时 data 已经被 observed 了
@@ -104,9 +108,13 @@ export default {
   },
   methods: {
     async fetchData() {
+      if (!this.showCatalogue) {
+        this.showCatalogue = true;
+      }
       const catalogueEle = document.querySelector(".catalogue");
-      if(catalogueEle){
-        catalogueEle.innerHTML = ""
+      if (catalogueEle) {
+        console.log(catalogueEle.innerHTML);
+        catalogueEle.innerHTML = "";
       }
       this.loading = true;
       if (this.$route.query.type === "artical") {
@@ -129,9 +137,9 @@ export default {
       }
       this.$nextTick(() => {
         const catalogueEle = document.querySelector(".catalogue");
-        const position = sessionStorage.getItem(this.$route.query.blogTitle)
+        const position = sessionStorage.getItem(this.$route.query.blogTitle);
         catalogueEle.innerHTML = "";
-        this.cataloguePosition = position ? JSON.parse(position) : []
+        this.cataloguePosition = position ? JSON.parse(position) : [];
         this.catalogue = document.querySelectorAll(
           `.v-show-content h1,
             .v-show-content h2,
@@ -140,51 +148,53 @@ export default {
             .v-show-content h5,
             .v-show-content h6`
         );
-        if(!this.catalogue.length){
-          this.showCatalogue = false
-        }else{
-          this.showCatalogue = true
+        if (this.catalogue.length) {
+          this.showCatalogue = true;
+        } else {
+          this.showCatalogue = false;
         }
         const fragment = document.createDocumentFragment();
-        const title = document.createElement("h1")
-        title.style.textAlign = "center"
-        title.innerHTML = "目录"
-        fragment.appendChild(title)
-        let index = 0
-        
+        const title = document.createElement("h1");
+        title.style.textAlign = "center";
+        title.innerHTML = "目录";
+        fragment.appendChild(title);
+        let index = 0;
+
         for (let v of this.catalogue) {
-          if(!position){
-            this.cataloguePosition.push(v.offsetTop)
+          if (!position) {
+            this.cataloguePosition.push(v.offsetTop);
           }
 
           const ele = document.createElement(v.tagName);
-          const br = document.createElement("br")
-          
-          const reg = /<(\/)?a[\s\n\r\w\d_:="-.?/]*>/g
-          
-          ele.innerHTML = v.innerHTML.replaceAll(reg,"");
+          const br = document.createElement("br");
+
+          const reg = /<(\/)?a[\s\n\r\w\d_:="-.?/]*>/g;
+
+          ele.innerHTML = v.innerHTML.replaceAll(reg, "");
 
           ele.style.cssText = `
             cursor:pointer;
             display:inline-block;
             margin:0;
-          `
-          ele.setAttribute("id",index++)
- 
-          ele.addEventListener("mouseenter",()=>{
-            ele.style.color = "rgb(100, 176, 242)"
-          })
-          ele.addEventListener("mouseleave",()=>{
-            ele.style.color = "skyblue"
-          })
-          
+          `;
+          ele.setAttribute("id", index++);
+
+          ele.addEventListener("mouseenter", () => {
+            ele.style.color = "rgb(100, 176, 242)";
+          });
+          ele.addEventListener("mouseleave", () => {
+            ele.style.color = "skyblue";
+          });
+
           fragment.appendChild(ele);
-          fragment.appendChild(br)
+          fragment.appendChild(br);
         }
-        sessionStorage.setItem(this.$route.query.blogTitle,JSON.stringify(this.cataloguePosition))
+        sessionStorage.setItem(
+          this.$route.query.blogTitle,
+          JSON.stringify(this.cataloguePosition)
+        );
 
         catalogueEle.appendChild(fragment);
-
       });
     },
     fullScreen() {
@@ -240,15 +250,17 @@ export default {
       }
       return isFull;
     },
-    toWhichTitle(e){
-      const contentOffsetTop = document.querySelector(".content").offsetTop
-      const catalogueHeight = this.$refs.catalogue.clientHeight
-      if(e.target.id){
-        document.documentElement.scrollTop = this.cataloguePosition[e.target.id] + contentOffsetTop + catalogueHeight
+    toWhichTitle(e) {
+      const contentOffsetTop = document.querySelector(".content").offsetTop;
+      const catalogueHeight = this.$refs.catalogue.clientHeight;
+      if (e.target.id) {
+        document.documentElement.scrollTop =
+          this.cataloguePosition[e.target.id] +
+          contentOffsetTop +
+          catalogueHeight;
       }
-      
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -312,7 +324,7 @@ export default {
     position: fixed;
     cursor: pointer;
     top: 90px;
-    left: 1400px;
+    right: 5%;
     z-index: 99999;
   }
 }
@@ -327,7 +339,7 @@ export default {
 
 @media only screen and (min-width: 280px) and (max-width: 912px) {
   .artical {
-    width: 90%; //
+    width: 90%; 
     margin-top: 50px;
     padding: 25px 14px;
     font-size: 14px;
@@ -349,57 +361,60 @@ export default {
     }
   }
 }
-@media screen and (min-width: 280px) and (max-width: 350px) {
-}
 @media only screen and (min-width: 912px) and (max-width: 1400px) {
   .artical {
     font-size: 15px;
     // margin-left: 1rem;
   }
 }
-@media screen and (min-width:1600px) {
-  .artical{
+@media screen and (min-width: 1600px) {
+  .artical {
     font-size: 1rem;
-    .loading{
+    .loading {
       font-size: 2rem;
     }
-    .date{
+    .date {
       font-size: 1.2rem;
     }
-    .context{
+    .context {
       font-size: 1.1rem;
       line-height: 2rem;
       letter-spacing: 1.5px;
     }
+    .catalogue {
+      line-height: 2rem;
+    }
     .fullScreenBtn,
-  .quitfullScreenBtn{
-    font-size: 1.1rem;
-    width: 6rem;
-    height: 2.5rem;
-  }
+    .quitfullScreenBtn {
+      font-size: 1.1rem;
+      width: 6rem;
+      height: 2.5rem;
+    }
   }
 }
-@media screen and (min-width:3000px) {
-  .artical{
+@media screen and (min-width: 3000px) {
+  .artical {
     font-size: 1.5rem;
-    .loading{
+    .loading {
       font-size: 3rem;
-      // margin: 100rem auto 0;
     }
-    .date{
+    .date {
       font-size: 1.4rem;
     }
-    .context{
+    .context {
       font-size: 1.5rem;
       line-height: 2.5rem;
       letter-spacing: 2px;
     }
+    .catalogue {
+      line-height: 2.8rem;
+    }
     .fullScreenBtn,
-  .quitfullScreenBtn{
-    font-size: 1.5rem;
-    width: 8rem;
-    height: 3rem;
-  }
+    .quitfullScreenBtn {
+      font-size: 1.5rem;
+      width: 8rem;
+      height: 3rem;
+    }
   }
 }
 </style>

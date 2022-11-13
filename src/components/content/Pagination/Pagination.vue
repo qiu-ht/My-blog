@@ -103,6 +103,7 @@ export default {
     text-align: center;
     line-height: 30px;
     color: #606266;
+    // margin-right: 5px;
     &:hover {
       background-color: #6ab8f9;
       color: #fff;
@@ -127,7 +128,7 @@ export default {
     font-weight: bold;
   }
   .lastPageBtn {
-    margin-right: 3px;
+    margin-right: 5px;
   }
   .nextPageBtn,
   .lastPageBtn {
@@ -167,6 +168,9 @@ export default {
       height: 2.2rem;
       margin-right: 0.5rem;
     }
+    .lastPageBtn{
+      margin-right: 0.7rem;
+    }
   }
 }
 @media screen and (min-width: 2300px) {
@@ -187,14 +191,14 @@ export default {
       height: 2.5rem;
       margin-right: 0.5rem;
     }
+    .lastPageBtn{
+      margin-right: 0.5rem;
+    }
   }
 }
 @media screen and (min-width: 4000px) {
   .paging{
-    .PageBtn{
-      margin-right: 0.8rem;
-    }
-    .restPage{
+    .PageBtn,.restPage,.lastPageBtn{
       margin-right: 0.8rem;
     }
   }

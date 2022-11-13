@@ -39,10 +39,12 @@
               <img src="/image/icon/portrait.jpg" alt="" />
               <span>飀釧灃</span>
             </a>
+            <span class="divide">|</span>
             <div class="date">
               <i class="iconfont icon-riqi"></i>
               <span>{{ artical.publishDate.slice(0, 10) }}</span>
             </div>
+            <span class="divide">|</span>
             <div class="views">
               <i class="iconfont icon-liulanliang"></i>
               <span>{{ artical.articalView }}</span>
@@ -228,12 +230,8 @@ export default {
     position: relative;
     margin: 0 auto 40px;
 
-    .imgBox {
-      // box-shadow: 0 0 5px #6ab8f9;
-    }
     &:hover {
       box-shadow: 0 0 5px #0287f4;
-      // border-bottom: 1px solid #80b1e9;
       transition: 0.2s;
       .imgBox {
         img {
@@ -252,14 +250,14 @@ export default {
       justify-content: space-evenly;
       align-items: center;
       &:hover {
-        color: #4168d396;
-        transition: 0.3s;
+        .content {
+          color: #4168d396;
+          transition: 0.3s;
+        }
       }
       .artical-info {
-        // position: relative;
         display: flex;
         padding: 3% 0 2% 5%;
-        // padding-left: 5%;
         flex-wrap: wrap;
         flex-direction: column;
         justify-content: left;
@@ -270,7 +268,6 @@ export default {
           border-left: 10px solid #05a3ff;
           height: 30px;
           padding-left: 10px;
-          // width: 50%;
           width: 80%;
           color: #05a3ff;
           margin-bottom: 1vw;
@@ -287,13 +284,14 @@ export default {
           align-items: center;
           height: 150px;
           max-width: 98%;
+
           .imgBox {
             width: 200px;
             // height: 50%;
             // height: 80%;
             overflow: hidden;
             margin-right: 3%;
-            height: 82%;
+            height: 83%;
             img {
               width: 100%;
               height: 100%;
@@ -311,19 +309,22 @@ export default {
             padding-right: 4%;
             letter-spacing: 2px;
             line-height: 30px;
+            height: auto;
           }
         }
         .bottom_info {
           display: flex;
           align-items: center;
-          justify-content: right;
+          justify-content: space-between;
+          margin-top: 1%;
+          width: 30%;
+          margin-left: 93%;
+          transform: translate(-100%);
           .user {
             color: rgb(158, 157, 157);
-            margin-right: 7%;
             cursor: pointer;
             &:hover {
               color: #05a3ff;
-              // transition: 0.2s;
             }
             img {
               width: 20px;
@@ -341,7 +342,6 @@ export default {
           .date,
           .views {
             color: rgb(158, 157, 157);
-            margin-right: 7%;
             i {
               font-size: 13px;
             }
@@ -349,6 +349,11 @@ export default {
               font-size: 13px;
               margin-left: 3px;
             }
+          }
+          .divide {
+            color: rgb(158, 157, 157);
+            font-size: 13px;
+            user-select: none;
           }
         }
       }
@@ -371,7 +376,6 @@ export default {
       animation: showEditBtn 0.3s linear;
       overflow: hidden;
       display: none;
-
       &:hover {
         background-color: rgba(115, 174, 212, 0.9);
         color: blanchedalmond;
@@ -424,7 +428,6 @@ export default {
         .artical-info {
           width: 100%;
           padding: 3% 4%;
-
           .titleBox {
             top: 18px;
             left: 5%;
@@ -432,24 +435,24 @@ export default {
             height: 20px;
             font-size: 14px;
             margin-bottom: 0;
-            // border: none;
           }
           .content {
             height: auto;
-            padding:0 10px;
-            .content-text{
+            padding: 0 10px;
+            .content-text {
               left: 0;
-            right: 0;
-            margin: 10px auto;
-            font-size: 13px;
-            -webkit-line-clamp: 2;
-            line-height: 25px;
+              right: 0;
+              margin: 10px auto;
+              font-size: 13px;
+              -webkit-line-clamp: 2;
+              line-height: 25px;
             }
           }
           .bottom_info {
-            left: 5%;
-            width: 100%;
+            width: 96%;
             justify-content: space-evenly;
+            margin-left: 0;
+            transform: none;
             .user {
               img {
                 width: 18px;
@@ -488,9 +491,13 @@ export default {
         .artical-info {
           .titleBox {
             font-size: 17px;
+            height: 25px;
           }
           .content {
             font-size: 14px;
+          }
+          .bottom_info{
+            width: 34%;
           }
         }
       }
@@ -512,6 +519,9 @@ export default {
               width: 20%;
             }
           }
+          .bottom_info{
+            width: 40%;
+          }
         }
       }
     }
@@ -529,19 +539,19 @@ export default {
           .content {
             font-size: 1.3rem;
             height: 180px;
-            .imgBox{
+            .imgBox {
               width: 220px;
             }
-            .content-text{
+            .content-text {
               font-size: 1.3rem;
               line-height: 2.5rem;
             }
           }
           .bottom_info {
+            width: 32%;
             .user,
             .date,
             .views {
-              margin-right: 7%;
               span,
               i {
                 font-size: 1.1rem;
@@ -550,7 +560,10 @@ export default {
                 width: 1.3rem;
               }
             }
-            
+
+            .divide {
+              font-size: 1.1rem;
+            }
           }
         }
       }
@@ -569,19 +582,19 @@ export default {
           .content {
             font-size: 1.3rem;
             height: 200px;
-            .imgBox{
+            .imgBox {
               width: 250px;
             }
-            .content-text{
+            .content-text {
               font-size: 1.5rem;
               line-height: 2.5rem;
             }
           }
           .bottom_info {
+            width: 30%;
             .user,
             .date,
             .views {
-              margin-right: 6%;
               span,
               i {
                 font-size: 1.5rem;
@@ -589,6 +602,9 @@ export default {
               img {
                 width: 1.5rem;
               }
+            }
+            .divide {
+              font-size: 1.5rem;
             }
           }
         }
@@ -608,21 +624,21 @@ export default {
           }
           .content {
             height: 230px;
-            .imgBox{
+            .imgBox {
               width: 280px;
             }
-            .content-text{
+            .content-text {
               font-size: 2.2rem;
               letter-spacing: 0.4rem;
               line-height: 3.2rem;
             }
           }
           .bottom_info {
+            margin-bottom: 1%;
             margin-top: 1%;
             .user,
             .date,
             .views {
-              margin-right: 6%;
               span,
               i {
                 font-size: 2.1rem;
@@ -630,6 +646,38 @@ export default {
               img {
                 width: 2.2rem;
               }
+            }
+            .divide {
+              font-size: 2.1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 5000px) {
+  .mainInfo {
+    .oneInfo {
+      .routeBox {
+        .artical-info {
+          .bottom_info {
+            margin-bottom: 0.5%;
+            margin-top: 1%;
+            width: 26%;
+            .user,
+            .date,
+            .views {
+              span,
+              i {
+                font-size: 2.1rem;
+              }
+              img {
+                width: 2.2rem;
+              }
+            }
+            .divide {
+              font-size: 2.1rem;
             }
           }
         }

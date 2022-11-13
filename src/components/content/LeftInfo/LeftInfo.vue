@@ -44,7 +44,7 @@ export default {
             display: none;
         }
     }
-    @media only screen and (min-width:912px) and (max-width:1400px) {
+    @media only screen and (min-width:912px) and (max-width:1200px) {
         .leftInfo{
            width: 30vw;
            padding: 40px 0 0 2rem;
@@ -52,13 +52,14 @@ export default {
     }
     @media screen and (min-width:1200px) and (max-width:1400px) {
         .leftInfo{
-            width: 28vw;
+            width: 26vw;
+            padding: 40px 1rem 0 2rem;
         }
     }
-    @media screen and (min-width: 1600px) {
+    @media screen and (min-width: 1400px) {
         .leftInfo{
             width: 25vw;
-            padding: 40px 4rem 0;
+            padding: 40px 1rem 0;
         }
     }
     @media screen and (min-width: 2600px) {

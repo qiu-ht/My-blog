@@ -21,6 +21,8 @@
     >
       退出全屏
     </button>
+    <el-divider content-position="center" v-if="!loading && showCatalogue"
+      >目录</el-divider>
     <div
       class="catalogue"
       @click="toWhichTitle"
@@ -153,29 +155,29 @@ export default {
           this.showCatalogue = false;
         }
         const fragment = document.createDocumentFragment();
-        const title = document.createElement("h1");
-        title.style.textAlign = "center";
-        title.innerHTML = "目录";
-        fragment.appendChild(title);
-        let index = 0;
 
+        let index = 0;
+        let maxTitleGrade = Infinity
         for (let v of this.catalogue) {
           if (!position) {
             this.cataloguePosition.push(v.offsetTop);
           }
-
+          const TitleGrade = v.tagName.substring(1)
+          if(TitleGrade < maxTitleGrade){
+            maxTitleGrade = TitleGrade
+          }
           const ele = document.createElement(v.tagName);
           const br = document.createElement("br");
 
           const reg = /<(\/)?a[\s\n\r\w\d_:="-.?/]*>/g;
 
           ele.innerHTML = "- " + v.innerHTML.replaceAll(reg, "");
-
+          console.log(maxTitleGrade,TitleGrade)
           ele.style.cssText = `
             cursor:pointer;
             display:inline-block;
             margin:0;
-            text-indent: ${v.tagName.substring(1)*1.5}rem;
+            text-indent: ${maxTitleGrade === TitleGrade ? 0 : TitleGrade - maxTitleGrade}rem;
             font-size:${window.screen.width/1500}rem;
           `;
           ele.setAttribute("id", index++);

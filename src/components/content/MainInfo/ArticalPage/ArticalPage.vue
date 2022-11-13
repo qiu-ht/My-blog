@@ -21,9 +21,7 @@
     >
       退出全屏
     </button>
-    <div class="catalogue" @click="toWhichTitle" ref="catalogue" v-if="!loading && showCatalogue">
-
-    </div>
+    <div class="catalogue" @click="toWhichTitle" ref="catalogue" v-if="!loading"></div>
     <el-divider content-position="center" v-if="!loading && showCatalogue"
       >正文</el-divider
     > 
@@ -63,15 +61,14 @@ export default {
       publishDate: "",
       catalogue: [],
       cataloguePosition: [],
-      showCatalogue:false
+      showCatalogue:true
     };
-  },
+  }, 
   created() {
     this.$watch(
       () => this.$route.query,
       () => {
-        
-        this.fetchData();
+        this.fetchData(); 
         
       },
       // 组件创建完后获取数据，
@@ -107,6 +104,10 @@ export default {
   },
   methods: {
     async fetchData() {
+      const catalogueEle = document.querySelector(".catalogue");
+      if(catalogueEle){
+        catalogueEle.innerHTML = ""
+      }
       this.loading = true;
       if (this.$route.query.type === "artical") {
         const res = await this.$api.artical.getOneArtical({
@@ -126,7 +127,6 @@ export default {
         this.blogContent = res.data.blogContent;
         this.loading = false;
       }
-      this.showCatalogue = false
       this.$nextTick(() => {
         const catalogueEle = document.querySelector(".catalogue");
         const position = sessionStorage.getItem(this.$route.query.blogTitle)
@@ -140,7 +140,9 @@ export default {
             .v-show-content h5,
             .v-show-content h6`
         );
-        if(this.catalogue.length){
+        if(!this.catalogue.length){
+          this.showCatalogue = false
+        }else{
           this.showCatalogue = true
         }
         const fragment = document.createDocumentFragment();
@@ -167,8 +169,8 @@ export default {
             display:inline-block;
             margin:0;
           `
-          ele.setAttribute("id",index++ )
-
+          ele.setAttribute("id",index++)
+ 
           ele.addEventListener("mouseenter",()=>{
             ele.style.color = "rgb(100, 176, 242)"
           })

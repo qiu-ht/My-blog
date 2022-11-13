@@ -229,7 +229,7 @@ export default {
     margin: 0 auto 40px;
 
     .imgBox {
-      box-shadow: 0 0 5px #6ab8f9;
+      // box-shadow: 0 0 5px #6ab8f9;
     }
     &:hover {
       box-shadow: 0 0 5px #0287f4;
@@ -237,7 +237,7 @@ export default {
       transition: 0.2s;
       .imgBox {
         img {
-          transform: scale3d(1.1, 1.1, 1.1);
+          transform: scale3d(1.2, 1.2, 1.2);
           transition: 0.5s;
         }
       }
@@ -266,8 +266,6 @@ export default {
         height: 100%;
         max-width: 95%;
         .titleBox {
-          // position: absolute;
-          // top: 15%;
           font-size: 22px;
           border-left: 10px solid #05a3ff;
           height: 30px;
@@ -276,7 +274,6 @@ export default {
           width: 80%;
           color: #05a3ff;
           margin-bottom: 1vw;
-          // border-bottom: 1px solid rgb(173, 173, 173);
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 1;
@@ -296,11 +293,11 @@ export default {
             // height: 80%;
             overflow: hidden;
             margin-right: 3%;
-            height: 100%;
+            height: 82%;
             img {
               width: 100%;
               height: 100%;
-              opacity: 0.7;
+              // opacity: 0.7;
             }
           }
           .content-text {

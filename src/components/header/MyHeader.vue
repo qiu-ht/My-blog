@@ -369,7 +369,7 @@ export default {
       }
       .mobileList {
         position: absolute;
-        right: 10px;
+        margin-right: 5px;
         top: 50px;
         width: 90px;
         background-color: rgba(99, 98, 98, 0.4);

@@ -226,14 +226,14 @@ export default {
 </script>
 
 <style lang='less' >
-.login {
+.login .el-tabs{
   width: 400px;
-  height: 200px;
-  position: relative;
+  position: absolute;
   left: 0;
   right: 0;
-  margin: -300px auto;
-  margin-bottom: calc(~"100vh - 300px");
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 auto;
   box-shadow: 0 0 2px black;
   z-index: 10;
   .avatar-uploader .el-upload {
@@ -263,7 +263,6 @@ export default {
 @media screen and (min-width: 280px) and (max-width: 912px) {
   .login {
     width: 90%;
-    margin-top: 200px;
   }
 }
 </style>

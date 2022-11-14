@@ -161,11 +161,11 @@ export default {
 
 <style scoped lang="less">
     .blogWrap{
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
         
         .blogtitle{
-            width: 850px;
+            width: 80%;
             height: 30px;
             border: none;
             border-radius: 3px;
@@ -178,13 +178,12 @@ export default {
             }
         }
         .blogType{
-            width: 100px;
+            width: 10%;
             height: 30px;
             border-radius: 3px;
             border: none;
             text-align: center;
             float: right;
-            margin-right: 10px;
             &:focus{
                 outline: none;
             }
@@ -193,9 +192,8 @@ export default {
             }
         }
         .blog{
-            min-width: 1000px !important; 
-            min-height: 800px !important;
-            
+            width: 100% !important; 
+            height: 800px !important;
         }
         .CoverImg{
             height: 200px;

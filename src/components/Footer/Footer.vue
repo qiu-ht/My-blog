@@ -74,7 +74,7 @@ export default {
   height: 100px;
   background-color: #6ab8f9;
   text-align: center;
-  margin-top: 500px;
+  // margin-top: 500px;
   .aboutMe,
   .contactMe,
   .followMe {
@@ -195,4 +195,9 @@ export default {
     }
   }
 }
+// @media screen and (min-width:5000px) {
+//   .myfooter{
+//     margin-top: 1000px;
+//   }
+// }
 </style>

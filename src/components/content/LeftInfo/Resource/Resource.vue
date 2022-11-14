@@ -131,6 +131,7 @@ export default {
 @media screen and (min-width: 1600px) {
   .resource {
     height: 22rem;
+    margin-top: 2rem;
     .title {
       font-size: 1.5rem;
     }
@@ -150,6 +151,7 @@ export default {
 @media screen and (min-width: 2300px) {
   .resource {
     height: 26rem;
+    margin-top: 3rem;
     .title {
       font-size: 1.8rem;
     }
@@ -169,7 +171,7 @@ export default {
 @media screen and (min-width: 4000px) {
   .resource {
     height: 30rem;
-
+    margin-top: 4rem;
     .title {
       font-size: 2rem;
       height: 5rem;
@@ -185,6 +187,11 @@ export default {
       .artical1{
         margin-top: 5rem;
       }
+  }
+}
+@media screen and (min-width: 4000px){
+  .resource{
+    margin-top: 5rem;
   }
 }
 </style>

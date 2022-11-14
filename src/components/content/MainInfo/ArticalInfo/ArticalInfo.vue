@@ -530,6 +530,7 @@ export default {
 @media screen and (min-width: 2000px) {
   .mainInfo {
     .oneInfo {
+      margin: 0 auto 50px;
       .routeBox {
         .artical-info {
           .titleBox {
@@ -573,6 +574,7 @@ export default {
 @media screen and (min-width: 3000px) {
   .mainInfo {
     .oneInfo {
+      margin: 0 auto 60px;
       .routeBox {
         .artical-info {
           .titleBox {
@@ -615,6 +617,7 @@ export default {
 @media screen and (min-width: 4000px) {
   .mainInfo {
     .oneInfo {
+      margin: 0 auto 70px;
       .routeBox {
         .artical-info {
           padding: 2% 0 1% 3%;
@@ -659,6 +662,7 @@ export default {
 @media screen and (min-width: 5000px) {
   .mainInfo {
     .oneInfo {
+      margin: 0 auto 80px;
       .routeBox {
         .artical-info {
           .bottom_info {

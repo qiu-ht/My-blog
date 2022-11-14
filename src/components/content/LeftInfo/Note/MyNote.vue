@@ -26,4 +26,24 @@ export default {
     margin-top: 50px;
     display: block;
   }
+  @media screen and (min-width:1600px) {
+    .note{
+      margin-top: 2rem;
+    }
+  }
+  @media screen and (min-width:2300px) {
+    .note{
+      margin-top: 3rem;
+    }
+  }
+  @media screen and (min-width:4000px) {
+    .note{
+      margin-top: 4rem;
+    }
+  }
+  @media screen and (min-width:6000px) {
+    .note{
+      margin-top: 5rem;
+    }
+  }
 </style>

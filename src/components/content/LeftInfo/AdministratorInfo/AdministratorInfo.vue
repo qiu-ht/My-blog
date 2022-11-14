@@ -134,6 +134,7 @@ export default {
     @media screen and (min-width:2300px) {
         .adminstratorInfo{
             font-size: 1.4rem;
+            margin-bottom: 3rem;
             .baseInfo{
                 div{
                     line-height: 3.2rem;
@@ -146,6 +147,7 @@ export default {
         .adminstratorInfo{
             font-size: 2rem;
             padding: 3rem 0;
+            margin-bottom: 4rem;
             .baseInfo{
                 div{
                     line-height: 4rem;
@@ -160,6 +162,7 @@ export default {
     }
     @media screen and (min-width:6000px) {
         .adminstratorInfo{
+            margin-bottom: 5rem;
             .Qrcode{
                 width: 17%;
             }

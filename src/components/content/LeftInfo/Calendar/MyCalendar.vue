@@ -326,7 +326,7 @@ export default {
 @media screen and (min-width:2300px) {
   .calendar{
     height: 30rem;
-    margin-bottom: 2rem;  
+    margin-bottom: 3rem;  
     .topDate{
       height: 5rem;
       .info{
@@ -355,7 +355,7 @@ export default {
 @media screen and (min-width:4000px) {
   .calendar{
     height: 35rem;
-    margin-bottom: 2rem;  
+    margin-bottom: 4rem;  
     .topDate{
       height: 5rem;
       .info{
@@ -379,6 +379,11 @@ export default {
         }
       }
     }
+  }
+}
+@media screen and (min-width:6000px) {
+  .calendar{
+    margin-bottom: 5rem;  
   }
 }
 </style>

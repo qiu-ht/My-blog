@@ -22,6 +22,7 @@ export default {
   display: flex;
   justify-content: center;
   margin-top: 100px;
+  margin-bottom: 500px;
 }
 .messageBoard {
   height: 1000px;

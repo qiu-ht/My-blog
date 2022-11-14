@@ -112,7 +112,7 @@ export default {
   left: 0;
   top: 0;
   right: 0;
-  right: 750px;
+  right: 50%;
   bottom: 150px;
   height: 125px;
   width: 125px;
@@ -122,7 +122,8 @@ export default {
 }
 .container #sky .cloud:nth-of-type(2) {
   bottom: 250px;
-  left: 1150px;
+  right: 0;
+  left: 50%;
 }
 .container #sky .cloud::before {
   content: "";

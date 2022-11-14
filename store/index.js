@@ -66,6 +66,14 @@ const actions = {
                 
             }
         )  
+    },
+
+    quitLogin(context){
+        const expire = Date.now() - 1;
+        const date = new Date(expire);
+        document.cookie =
+          "blog_token=;expires=" + date.toGMTString() + ";path=/";
+        context.commit('quitLogin')
     }
 }
 const mutations = {
@@ -122,6 +130,9 @@ const mutations = {
             state.leaveMesShow=false
             state.leaveMesShow=true
         });
+    },
+    quitLogin(state){
+        state.user = {}
     }
 
 }

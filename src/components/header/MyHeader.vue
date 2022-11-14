@@ -141,11 +141,7 @@ export default {
     },
     handleCommand(command) {
       if (command === "quitLogin") {
-        this.$store.state.user = {};
-        const expire = Date.now() - 1;
-        const date = new Date(expire);
-        document.cookie =
-          "blog_token=;expires=" + date.toGMTString() + ";path=/";
+        this.$store.dispatch("quitLogin")
       } else if (command === "showLoginpage") {
         this.$router.push({ path: "/login" });
         document.documentElement.scrollTop = 0;
@@ -301,7 +297,7 @@ export default {
       font-family: "微软雅黑";
       user-select: none;
       transition: 0.3s;
-      padding-left: calc(~"6vw - 2rem");
+      padding-left: calc(~"6vw - 1rem");
       &:hover {
         opacity: 0.9;
       }
@@ -328,8 +324,7 @@ export default {
       cursor: pointer;
       width: 2vw;
       border-radius: 50%;
-      right: calc(~"6vw - 2rem");
-      // background-color: red;
+      right: 6vw;
       img {
         width: 100%;
         height: 100%;
@@ -341,7 +336,7 @@ export default {
     .mobileList {
       position: absolute;
       right: 0;
-      margin-right: calc(~"7vw - 2rem");
+      margin-right: 7vw;
     }
     .login {
       position: absolute;
@@ -374,7 +369,7 @@ export default {
       }
       .mobileList {
         position: absolute;
-        right: 0;
+        right: 10px;
         top: 50px;
         width: 90px;
         background-color: rgba(99, 98, 98, 0.4);
@@ -499,7 +494,7 @@ export default {
         padding-left: calc(~"7vw - 2rem");
       }
       .portrait{
-        right: calc(~"6vw - 2rem");
+        right: calc(~"6vw - 1rem");
 
       }
       .mobileList{
@@ -513,7 +508,7 @@ export default {
     .nav {
       height: 8rem;
       .qiu {
-        padding-left: calc(~"8.5vw - 2rem");
+        padding-left: calc(~"8.5vw - 4rem");
         font-size: 4rem;
       }
       .home,
@@ -525,11 +520,11 @@ export default {
         font-size: 2.5rem;
       }
       .portrait{
-        right: calc(~"7vw - 2rem");
-
+        right: calc(~"7vw - 1rem");
+        width: 2.2vw;
       }
       .mobileList{
-        margin-right: calc(~"8vw - 2rem");
+        margin-right: calc(~"8vw - 1rem");
       }
     }
   }
@@ -539,7 +534,7 @@ export default {
     .nav {
       height: 10rem;
       .qiu {
-        padding-left: calc(~"10vw - 2rem");
+        padding-left: calc(~"11vw - 1rem");
         font-size: 5.5rem;
       }
       .home,
@@ -551,11 +546,27 @@ export default {
         font-size: 3.5rem;
       }
       .portrait{
-        right: calc(~"9vw - 2rem");
-
+        right: calc(~"11vw - 1rem");
+        width: 2vw;
       }
       .mobileList{
-        margin-right: calc(~"9vw - 2rem");
+        margin-right: 11vw;
+      }
+    }
+  }
+}
+@media screen and (min-width: 6000px){
+  .header {
+    .nav {
+      .qiu {
+        padding-left: calc(~"12vw");
+      }
+      .portrait{
+        right: calc(~"12vw + 1rem");
+        width: 1.6vw;
+      }
+      .mobileList{
+        margin-right: calc(~"12vw + 1rem");
       }
     }
   }

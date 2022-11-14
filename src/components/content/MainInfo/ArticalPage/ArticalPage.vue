@@ -69,6 +69,7 @@ export default {
       catalogue: [],
       cataloguePosition: [],
       showCatalogue: true,
+      fontSize:1
     };
   },
   created() {
@@ -91,10 +92,24 @@ export default {
       }
     };
 
-    if (document.documentElement.clientWidth < 912) {
+    const deviceWidth = document.documentElement.clientWidth
+
+    if (deviceWidth < 912) {
       document.documentElement.scrollTop = 0;
-    } else if (document.documentElement.clientWidth > 912) {
+    } else if (deviceWidth > 912) {
       document.documentElement.scrollTop = 500;
+    }
+
+    if(deviceWidth >= 280 && deviceWidth < 912){
+      this.fontSize = 1
+    }else if(deviceWidth >= 912 && deviceWidth < 1600){
+      this.fontSize = 1
+    }else if(deviceWidth >= 1600 && deviceWidth < 2600){
+      this.fontSize = 1.2
+    }else if(deviceWidth >= 2600 && deviceWidth < 4000){
+      this.fontSize = 1.7
+    }else if(deviceWidth >= 4000){
+      this.fontSize = 2
     }
   },
   computed: {
@@ -172,13 +187,13 @@ export default {
           const reg = /<(\/)?a[\s\n\r\w\d_:="-.?/]*>/g;
 
           ele.innerHTML = "- " + v.innerHTML.replaceAll(reg, "");
-          console.log(maxTitleGrade,TitleGrade)
+
           ele.style.cssText = `
             cursor:pointer;
             display:inline-block;
             margin:0;
             text-indent: ${maxTitleGrade === TitleGrade ? 0 : TitleGrade - maxTitleGrade}rem;
-            font-size:${window.screen.width/1500}rem;
+            font-size:${this.fontSize}rem;
           `;
           ele.setAttribute("id", index++);
 
@@ -357,6 +372,9 @@ export default {
     .context {
       top: 30px;
       letter-spacing: 1.5px;
+    }
+    .catalogue{
+      padding: 0;
     }
 
     .quitfullScreenBtn {

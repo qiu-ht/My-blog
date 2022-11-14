@@ -226,7 +226,7 @@ export default {
 </script>
 
 <style lang='less' >
-.login .el-tabs{
+.login {
   width: 400px;
   position: absolute;
   left: 0;

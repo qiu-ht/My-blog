@@ -40,6 +40,13 @@ export default {
   },
   methods:{
     sendQuestion(){
+      if(!this.nickname || !this.email || !this.content){
+        this.$message({
+          message:"填写内容不能为空！",
+          type:"error"
+        })
+        return
+      }
       const data = {
         nickname:this.nickname,
         email:this.email,
@@ -47,7 +54,10 @@ export default {
       }
       this.$api.question.sendQuestion(data).then(value => {
         if(value.data === "昵称已存在！"){
-          alert("昵称已存在！")
+          this.$message({
+            message:"昵称已存在！",
+            type:"error"
+          })
         }else{
           this.$message({
             message: "发送成功！",
@@ -387,6 +397,12 @@ input[type="submit"]:hover {
     width: 50%;
     letter-spacing: 0px;
     font-size: 0.85em;
+  }
+}
+@media screen and (min-width:280px) and (max-width:912px) {
+  .contact-agile{
+    margin-top: 50%;
+    margin-bottom: 20%;
   }
 }
 </style>

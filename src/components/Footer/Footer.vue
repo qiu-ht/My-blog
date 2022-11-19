@@ -195,9 +195,5 @@ export default {
     }
   }
 }
-// @media screen and (min-width:5000px) {
-//   .myfooter{
-//     margin-top: 1000px;
-//   }
-// }
+
 </style>

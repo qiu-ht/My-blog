@@ -186,7 +186,7 @@ export default {
 
           const reg = /<(\/)?a[\s\n\r\w\d_:="-.?/]*>/g;
 
-          ele.innerHTML = "- " + v.innerHTML.replaceAll(reg, "");
+          ele.innerHTML = v.innerHTML.replaceAll(reg, "");
 
           ele.style.cssText = `
             cursor:pointer;

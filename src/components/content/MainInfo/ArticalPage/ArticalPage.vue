@@ -22,7 +22,8 @@
       退出全屏
     </button>
     <el-divider content-position="center" v-if="!loading && showCatalogue"
-      >目录</el-divider>
+      >目录</el-divider
+    >
     <div
       class="catalogue"
       @click="toWhichTitle"
@@ -67,9 +68,8 @@ export default {
       blogContent: "",
       publishDate: "",
       catalogue: [],
-      cataloguePosition: [],
       showCatalogue: true,
-      fontSize:1
+      fontSize: 1,
     };
   },
   created() {
@@ -92,7 +92,7 @@ export default {
       }
     };
 
-    const deviceWidth = document.documentElement.clientWidth
+    const deviceWidth = document.documentElement.clientWidth;
 
     if (deviceWidth < 912) {
       document.documentElement.scrollTop = 0;
@@ -100,17 +100,38 @@ export default {
       document.documentElement.scrollTop = 500;
     }
 
-    if(deviceWidth >= 280 && deviceWidth < 912){
-      this.fontSize = 1
-    }else if(deviceWidth >= 912 && deviceWidth < 1600){
-      this.fontSize = 1
-    }else if(deviceWidth >= 1600 && deviceWidth < 2600){
-      this.fontSize = 1.2
-    }else if(deviceWidth >= 2600 && deviceWidth < 4000){
-      this.fontSize = 1.7
-    }else if(deviceWidth >= 4000){
-      this.fontSize = 2
+    if (deviceWidth >= 280 && deviceWidth < 912) {
+      this.fontSize = 1;
+    } else if (deviceWidth >= 912 && deviceWidth < 1600) {
+      this.fontSize = 1;
+    } else if (deviceWidth >= 1600 && deviceWidth < 2600) {
+      this.fontSize = 1.2;
+    } else if (deviceWidth >= 2600 && deviceWidth < 4000) {
+      this.fontSize = 1.7;
+    } else if (deviceWidth >= 4000) {
+      this.fontSize = 2;
     }
+
+    // 解决刷新文章标题id没有加上的问题，后续优化
+    setTimeout(() => {
+
+      // 如果id没有加上，则重新加上
+      if (this.showCatalogue && !document.querySelector("#target_title0")) {
+        console.log(111)
+        this.catalogue = document.querySelectorAll(
+          `.v-show-content h1,
+            .v-show-content h2,
+            .v-show-content h3,
+            .v-show-content h4,
+            .v-show-content h5,
+            .v-show-content h6`
+        );
+        let index = 0;
+        for (let v of this.catalogue) {
+          v.setAttribute("id", `target_title${index++}`);
+        }
+      }
+    }, 500);
   },
   computed: {
     prop() {
@@ -151,11 +172,11 @@ export default {
         this.blogContent = res.data.blogContent;
         this.loading = false;
       }
+      // 加载目录相关信息
       this.$nextTick(() => {
         const catalogueEle = document.querySelector(".catalogue");
         const position = sessionStorage.getItem(this.$route.query.blogTitle);
         catalogueEle.innerHTML = "";
-        this.cataloguePosition = position ? JSON.parse(position) : [];
         this.catalogue = document.querySelectorAll(
           `.v-show-content h1,
             .v-show-content h2,
@@ -172,14 +193,11 @@ export default {
         const fragment = document.createDocumentFragment();
 
         let index = 0;
-        let maxTitleGrade = Infinity
+        let maxTitleGrade = Infinity;
         for (let v of this.catalogue) {
-          if (!position) {
-            this.cataloguePosition.push(v.offsetTop);
-          }
-          const TitleGrade = v.tagName.substring(1)
-          if(TitleGrade < maxTitleGrade){
-            maxTitleGrade = TitleGrade
+          const TitleGrade = v.tagName.substring(1);
+          if (TitleGrade < maxTitleGrade) {
+            maxTitleGrade = TitleGrade;
           }
           const ele = document.createElement(v.tagName);
           const br = document.createElement("br");
@@ -192,10 +210,15 @@ export default {
             cursor:pointer;
             display:inline-block;
             margin:0;
-            text-indent: ${maxTitleGrade === TitleGrade ? 0 : TitleGrade - maxTitleGrade}rem;
+            text-indent: ${
+              maxTitleGrade === TitleGrade ? 0 : TitleGrade - maxTitleGrade
+            }rem;
             font-size:${this.fontSize}rem;
           `;
-          ele.setAttribute("id", index++);
+
+          v.setAttribute("id", `target_title${index}`);
+          ele.setAttribute("id", `title${index}`);
+          index++;
 
           ele.addEventListener("mouseenter", () => {
             ele.style.color = "rgb(100, 176, 242)";
@@ -207,10 +230,6 @@ export default {
           fragment.appendChild(ele);
           fragment.appendChild(br);
         }
-        sessionStorage.setItem(
-          this.$route.query.blogTitle,
-          JSON.stringify(this.cataloguePosition)
-        );
 
         catalogueEle.appendChild(fragment);
       });
@@ -269,13 +288,9 @@ export default {
       return isFull;
     },
     toWhichTitle(e) {
-      const contentOffsetTop = document.querySelector(".content").offsetTop;
-      const catalogueHeight = this.$refs.catalogue.clientHeight;
       if (e.target.id) {
-        document.documentElement.scrollTop =
-          this.cataloguePosition[e.target.id] +
-          contentOffsetTop +
-          catalogueHeight;
+        // 实现目录跳转
+        document.querySelector(`#target_${e.target.id}`).scrollIntoView(true);
       }
     },
   },
@@ -357,7 +372,7 @@ export default {
 
 @media only screen and (min-width: 280px) and (max-width: 912px) {
   .artical {
-    width: 90%; 
+    width: 90%;
     margin-top: 50px;
     padding: 25px 14px;
     font-size: 14px;
@@ -373,7 +388,7 @@ export default {
       top: 30px;
       letter-spacing: 1.5px;
     }
-    .catalogue{
+    .catalogue {
       padding: 0;
     }
 

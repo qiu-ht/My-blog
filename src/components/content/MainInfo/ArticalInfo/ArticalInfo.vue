@@ -262,7 +262,7 @@ export default {
         flex-direction: column;
         justify-content: left;
         height: 100%;
-        max-width: 95%;
+        width: 95%;
         .titleBox {
           font-size: 22px;
           border-left: 10px solid #05a3ff;

@@ -284,18 +284,16 @@ export default {
           align-items: center;
           height: 150px;
           max-width: 98%;
-
+          word-wrap: none;
+          word-break: break-all;
           .imgBox {
             width: 200px;
-            // height: 50%;
-            // height: 80%;
             overflow: hidden;
             margin-right: 3%;
             height: 83%;
             img {
               width: 100%;
               height: 100%;
-              // opacity: 0.7;
             }
           }
           .content-text {
@@ -413,7 +411,6 @@ export default {
     box-shadow: none;
     .oneInfo {
       width: 100%;
-      height: 140px;
       overflow: hidden;
       margin-bottom: 25px;
       &:hover {
@@ -426,8 +423,7 @@ export default {
 
       .routeBox {
         .artical-info {
-          width: 100%;
-          padding: 3% 4%;
+          padding: 25px 20px 20px 15px;
           .titleBox {
             top: 18px;
             left: 5%;
@@ -437,8 +433,8 @@ export default {
             margin-bottom: 0;
           }
           .content {
+            width: 100%;
             height: auto;
-            padding: 0 10px;
             .content-text {
               left: 0;
               right: 0;
@@ -446,6 +442,8 @@ export default {
               font-size: 13px;
               -webkit-line-clamp: 2;
               line-height: 25px;
+              padding-right: 0;
+              padding-left: 10px;
             }
           }
           .bottom_info {
@@ -455,7 +453,7 @@ export default {
             transform: none;
             .user {
               img {
-                width: 18px;
+                width: 15px;
               }
               span {
                 font-size: 12px;
@@ -483,6 +481,22 @@ export default {
     }
   }
 }
+@media screen and (min-width: 480px) and (max-width: 912px) {
+  .mainInfo {
+    .oneInfo {
+      .routeBox {
+        .artical-info {
+          .divide {
+            margin: 0 3%;
+          }
+          .bottom_info {
+            justify-content: right;
+          }
+        }
+      }
+    }
+  }
+}
 
 @media only screen and (min-width: 1100px) and (max-width: 1200px) {
   .mainInfo {
@@ -496,7 +510,7 @@ export default {
           .content {
             font-size: 14px;
           }
-          .bottom_info{
+          .bottom_info {
             width: 34%;
           }
         }
@@ -519,7 +533,7 @@ export default {
               width: 20%;
             }
           }
-          .bottom_info{
+          .bottom_info {
             width: 40%;
           }
         }

@@ -206,13 +206,14 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",
-      }).then(() => {
-        this.$api.artical.deleteBlog({ blogTitle: blogTitle, type: type });
+      }).then(async () => {
+        await this.$api.artical.deleteBlog({ blogTitle: blogTitle, type: type });
         this.$message({
           type: "success",
           message: "删除成功！",
         });
-        this.changePage(1);
+        // 局部刷新
+        this.changePage(this.curPageIndex);
       });
     },
     editArt(artical, e) {

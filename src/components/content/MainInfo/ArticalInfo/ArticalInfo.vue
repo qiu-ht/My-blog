@@ -30,7 +30,7 @@
               />
             </div>
             <div class="content-text">
-              {{ artical.blogContent }}
+              {{ artical.blogContent.replace(/[#`*>(!\[\d\])]/g,"") }}
             </div>
           </div>
 
